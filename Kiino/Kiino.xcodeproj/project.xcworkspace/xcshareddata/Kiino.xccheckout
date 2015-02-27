@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DEBD13DC-0A2B-4D0C-AF53-D4D68CF91E62</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Kiino</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1FE7DD3B5F62A86097D02CA42357796BEB693FCD</key>
+		<string>github.com:carlosguerreroo/Kiino.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Kiino/Kiino.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1FE7DD3B5F62A86097D02CA42357796BEB693FCD</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:carlosguerreroo/Kiino.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1FE7DD3B5F62A86097D02CA42357796BEB693FCD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1FE7DD3B5F62A86097D02CA42357796BEB693FCD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Kiino</string>
+		</dict>
+	</array>
+</dict>
+</plist>
