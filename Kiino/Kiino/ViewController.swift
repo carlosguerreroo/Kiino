@@ -10,16 +10,24 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var searcher: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+//        prepareView()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func prepareView () {
+        
+        var placeholder = NSAttributedString(string: "Some",
+            attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+        searcher.attributedPlaceholder = placeholder
+    }
 
 }
 
