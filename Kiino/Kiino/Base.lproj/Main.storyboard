@@ -13,11 +13,12 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="What are you looking for?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8AU-lD-TG8">
-                                <rect key="frame" x="61" y="274" width="199" height="20"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="WHAT ARE YOU LOOKING FOR?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8AU-lD-TG8">
+                                <rect key="frame" x="155" y="90" width="259.5" height="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -25,9 +26,19 @@
                         <color key="backgroundColor" red="0.99215686270000003" green="0.52549019610000003" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="8AU-lD-TG8" secondAttribute="centerX" constant="-0.5" id="8Zf-Ip-0Jj"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="8AU-lD-TG8" secondAttribute="bottom" constant="210" id="95f-UJ-4L8"/>
+                            <constraint firstAttribute="centerX" secondItem="8AU-lD-TG8" secondAttribute="centerX" constant="-0.5" id="E7c-h7-qFH"/>
                             <constraint firstAttribute="centerY" secondItem="8AU-lD-TG8" secondAttribute="centerY" id="KXG-yN-q5b"/>
+                            <constraint firstItem="8AU-lD-TG8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="70" id="UUB-Dz-gYi"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="8Zf-Ip-0Jj"/>
+                                <exclude reference="KXG-yN-q5b"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
