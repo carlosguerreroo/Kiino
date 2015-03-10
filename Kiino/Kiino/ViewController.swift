@@ -17,6 +17,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         searcher.delegate = self
 
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
