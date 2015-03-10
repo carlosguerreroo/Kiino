@@ -8,25 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var searcher: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        prepareView()
+        searcher.delegate = self
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    func prepareView () {
-        
-        var placeholder = NSAttributedString(string: "Some",
-            attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
-        searcher.attributedPlaceholder = placeholder
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
 }

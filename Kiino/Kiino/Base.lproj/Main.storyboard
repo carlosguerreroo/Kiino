@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,10 +18,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="WHAT ARE YOU LOOKING FOR?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8AU-lD-TG8">
-                                <rect key="frame" x="26" y="90" width="268.5" height="268"/>
+                                <rect key="frame" x="26" y="209" width="268.5" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="HZ9-KN-Xmc"/>
+                                </constraints>
                                 <color key="textColor" red="0.81568634510040283" green="0.94117653369903564" blue="0.95294123888015747" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="search"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                         <color key="value" red="0.99215692281723022" green="0.9960784912109375" blue="0.99215692281723022" alpha="0.55000000000000004" colorSpace="deviceRGB"/>
@@ -30,9 +34,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.52549019610000003" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="8AU-lD-TG8" secondAttribute="bottom" constant="210" id="95f-UJ-4L8"/>
-                            <constraint firstAttribute="centerX" secondItem="8AU-lD-TG8" secondAttribute="centerX" constant="-0.5" id="E7c-h7-qFH"/>
-                            <constraint firstItem="8AU-lD-TG8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="70" id="UUB-Dz-gYi"/>
+                            <constraint firstItem="8AU-lD-TG8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="209" id="IGg-7S-wRp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8AU-lD-TG8" secondAttribute="trailing" constant="9.5" id="plQ-EA-FyA"/>
+                            <constraint firstItem="8AU-lD-TG8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="sUB-yz-FbR"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
