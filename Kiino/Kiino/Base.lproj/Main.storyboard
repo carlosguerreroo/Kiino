@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="WHAT ARE YOU LOOKING FOR?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8AU-lD-TG8">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="WHAT ARE YOU LOOKING FOR?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8AU-lD-TG8">
                                 <rect key="frame" x="26" y="209" width="268.5" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="HZ9-KN-Xmc"/>
@@ -31,15 +31,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="n4A-uH-r8l" kind="push" id="HiE-BO-oM8"/>
+                                    <segue destination="n4A-uH-r8l" kind="show" identifier="searching" id="HiE-BO-oM8"/>
                                 </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.52549019610000003" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="8AU-lD-TG8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="209" id="IGg-7S-wRp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8AU-lD-TG8" secondAttribute="trailing" constant="9.5" id="plQ-EA-FyA"/>
                             <constraint firstItem="8AU-lD-TG8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="sUB-yz-FbR"/>
+                            <constraint firstItem="8AU-lD-TG8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="209" id="sxL-NO-Zq6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OEo-Yd-NwF"/>
