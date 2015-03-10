@@ -14,6 +14,7 @@
 		FA679F331AA00837004E6C90 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA679F311AA00837004E6C90 /* LaunchScreen.xib */; };
 		FA679F3F1AA00837004E6C90 /* KiinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA679F3E1AA00837004E6C90 /* KiinoTests.swift */; };
 		FAF471BC1AAE74FC0075F3E9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF471BB1AAE74FC0075F3E9 /* SearchViewController.swift */; };
+		FAF471BE1AAE7A430075F3E9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		FA679F3D1AA00837004E6C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA679F3E1AA00837004E6C90 /* KiinoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KiinoTests.swift; sourceTree = "<group>"; };
 		FAF471BB1AAE74FC0075F3E9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = ../SearchViewController.swift; sourceTree = "<group>"; };
+		FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				FA679F2F1AA00837004E6C90 /* Images.xcassets */,
 				FA679F311AA00837004E6C90 /* LaunchScreen.xib */,
 				FA679F261AA00837004E6C90 /* Supporting Files */,
+				FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */,
 			);
 			path = Kiino;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF471BE1AAE7A430075F3E9 /* LoginViewController.swift in Sources */,
 				FAF471BC1AAE74FC0075F3E9 /* SearchViewController.swift in Sources */,
 				FA679F2B1AA00837004E6C90 /* ViewController.swift in Sources */,
 				FA679F291AA00837004E6C90 /* AppDelegate.swift in Sources */,
