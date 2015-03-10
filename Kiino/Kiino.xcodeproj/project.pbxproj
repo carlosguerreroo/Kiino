@@ -405,6 +405,7 @@
 				FA679F441AA00837004E6C90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA679F451AA00837004E6C90 /* Build configuration list for PBXNativeTarget "KiinoTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +414,7 @@
 				FA679F471AA00837004E6C90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
