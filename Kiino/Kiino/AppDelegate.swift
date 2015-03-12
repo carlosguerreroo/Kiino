@@ -15,7 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
+        Parse.setApplicationId("VHtUkkCyFvRjJQOY4pa6jOxUKElA1nu4KRVVO1Dc", clientKey: "vOqLyFvPVkY5LZILmIy8Goq6MALTgTFlh4gjM6Es")
+        PFFacebookUtils.initializeFacebook()
+        
+        PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
         return true
     }
 

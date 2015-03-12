@@ -13,6 +13,23 @@
 		FA679F301AA00837004E6C90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA679F2F1AA00837004E6C90 /* Images.xcassets */; };
 		FA679F331AA00837004E6C90 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA679F311AA00837004E6C90 /* LaunchScreen.xib */; };
 		FA679F3F1AA00837004E6C90 /* KiinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA679F3E1AA00837004E6C90 /* KiinoTests.swift */; };
+		FAD884CE1AB2192F00691A4E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884CD1AB2192F00691A4E /* Parse.framework */; };
+		FAD884D01AB2194800691A4E /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884CF1AB2194800691A4E /* Accounts.framework */; };
+		FAD884D21AB2194E00691A4E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884D11AB2194E00691A4E /* AudioToolbox.framework */; };
+		FAD884D41AB2195400691A4E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884D31AB2195400691A4E /* CFNetwork.framework */; };
+		FAD884D61AB2195A00691A4E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884D51AB2195A00691A4E /* CoreGraphics.framework */; };
+		FAD884D81AB2195F00691A4E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884D71AB2195F00691A4E /* CoreLocation.framework */; };
+		FAD884DA1AB2196500691A4E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884D91AB2196500691A4E /* MobileCoreServices.framework */; };
+		FAD884DC1AB2196C00691A4E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884DB1AB2196C00691A4E /* QuartzCore.framework */; };
+		FAD884DE1AB2197100691A4E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884DD1AB2197100691A4E /* Security.framework */; };
+		FAD884E01AB2197800691A4E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884DF1AB2197800691A4E /* Social.framework */; };
+		FAD884E21AB2197D00691A4E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884E11AB2197D00691A4E /* StoreKit.framework */; };
+		FAD884E41AB2198400691A4E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884E31AB2198400691A4E /* SystemConfiguration.framework */; };
+		FAD884E61AB2198B00691A4E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884E51AB2198B00691A4E /* libz.dylib */; };
+		FAD884E81AB2199400691A4E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884E71AB2199400691A4E /* libsqlite3.dylib */; };
+		FAD884EA1AB21ABD00691A4E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884E91AB21ABD00691A4E /* FacebookSDK.framework */; };
+		FAD884EC1AB21ADF00691A4E /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884EB1AB21ADF00691A4E /* ParseFacebookUtils.framework */; };
+		FAD884EE1AB21BF300691A4E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD884ED1AB21BF300691A4E /* Bolts.framework */; };
 		FAF471BC1AAE74FC0075F3E9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF471BB1AAE74FC0075F3E9 /* SearchViewController.swift */; };
 		FAF471BE1AAE7A430075F3E9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +55,24 @@
 		FA679F381AA00837004E6C90 /* KiinoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiinoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA679F3D1AA00837004E6C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA679F3E1AA00837004E6C90 /* KiinoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KiinoTests.swift; sourceTree = "<group>"; };
+		FAD884C81AB218BE00691A4E /* Kiino-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kiino-Bridging-Header.h"; sourceTree = "<group>"; };
+		FAD884CD1AB2192F00691A4E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		FAD884CF1AB2194800691A4E /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		FAD884D11AB2194E00691A4E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FAD884D31AB2195400691A4E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		FAD884D51AB2195A00691A4E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FAD884D71AB2195F00691A4E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FAD884D91AB2196500691A4E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		FAD884DB1AB2196C00691A4E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		FAD884DD1AB2197100691A4E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FAD884DF1AB2197800691A4E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		FAD884E11AB2197D00691A4E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		FAD884E31AB2198400691A4E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FAD884E51AB2198B00691A4E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		FAD884E71AB2199400691A4E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		FAD884E91AB21ABD00691A4E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		FAD884EB1AB21ADF00691A4E /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		FAD884ED1AB21BF300691A4E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		FAF471BB1AAE74FC0075F3E9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = ../SearchViewController.swift; sourceTree = "<group>"; };
 		FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,6 +82,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD884EA1AB21ABD00691A4E /* FacebookSDK.framework in Frameworks */,
+				FAD884E81AB2199400691A4E /* libsqlite3.dylib in Frameworks */,
+				FAD884E61AB2198B00691A4E /* libz.dylib in Frameworks */,
+				FAD884E41AB2198400691A4E /* SystemConfiguration.framework in Frameworks */,
+				FAD884E21AB2197D00691A4E /* StoreKit.framework in Frameworks */,
+				FAD884EC1AB21ADF00691A4E /* ParseFacebookUtils.framework in Frameworks */,
+				FAD884E01AB2197800691A4E /* Social.framework in Frameworks */,
+				FAD884DE1AB2197100691A4E /* Security.framework in Frameworks */,
+				FAD884DC1AB2196C00691A4E /* QuartzCore.framework in Frameworks */,
+				FAD884DA1AB2196500691A4E /* MobileCoreServices.framework in Frameworks */,
+				FAD884D81AB2195F00691A4E /* CoreLocation.framework in Frameworks */,
+				FAD884D61AB2195A00691A4E /* CoreGraphics.framework in Frameworks */,
+				FAD884EE1AB21BF300691A4E /* Bolts.framework in Frameworks */,
+				FAD884D41AB2195400691A4E /* CFNetwork.framework in Frameworks */,
+				FAD884D21AB2194E00691A4E /* AudioToolbox.framework in Frameworks */,
+				FAD884D01AB2194800691A4E /* Accounts.framework in Frameworks */,
+				FAD884CE1AB2192F00691A4E /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +115,23 @@
 		FA679F1A1AA00836004E6C90 = {
 			isa = PBXGroup;
 			children = (
+				FAD884ED1AB21BF300691A4E /* Bolts.framework */,
+				FAD884EB1AB21ADF00691A4E /* ParseFacebookUtils.framework */,
+				FAD884E91AB21ABD00691A4E /* FacebookSDK.framework */,
+				FAD884E71AB2199400691A4E /* libsqlite3.dylib */,
+				FAD884E51AB2198B00691A4E /* libz.dylib */,
+				FAD884E31AB2198400691A4E /* SystemConfiguration.framework */,
+				FAD884E11AB2197D00691A4E /* StoreKit.framework */,
+				FAD884DF1AB2197800691A4E /* Social.framework */,
+				FAD884DD1AB2197100691A4E /* Security.framework */,
+				FAD884DB1AB2196C00691A4E /* QuartzCore.framework */,
+				FAD884D91AB2196500691A4E /* MobileCoreServices.framework */,
+				FAD884D71AB2195F00691A4E /* CoreLocation.framework */,
+				FAD884D51AB2195A00691A4E /* CoreGraphics.framework */,
+				FAD884D31AB2195400691A4E /* CFNetwork.framework */,
+				FAD884D11AB2194E00691A4E /* AudioToolbox.framework */,
+				FAD884CF1AB2194800691A4E /* Accounts.framework */,
+				FAD884CD1AB2192F00691A4E /* Parse.framework */,
 				FA679F251AA00837004E6C90 /* Kiino */,
 				FA679F3B1AA00837004E6C90 /* KiinoTests */,
 				FA679F241AA00837004E6C90 /* Products */,
@@ -89,6 +158,7 @@
 				FA679F311AA00837004E6C90 /* LaunchScreen.xib */,
 				FA679F261AA00837004E6C90 /* Supporting Files */,
 				FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */,
+				FAD884C81AB218BE00691A4E /* Kiino-Bridging-Header.h */,
 			);
 			path = Kiino;
 			sourceTree = "<group>";
@@ -344,9 +414,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/Users/macbook/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = Kiino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Kiino/Kiino-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -354,9 +432,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/Users/macbook/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = Kiino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Kiino/Kiino-Bridging-Header.h";
 			};
 			name = Release;
 		};
