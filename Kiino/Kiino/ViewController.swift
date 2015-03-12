@@ -30,12 +30,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         super.didReceiveMemoryWarning()
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
-        textField.resignFirstResponder()
-        self.searcher.text = nil
-        return true
-    }
-    
     func addGestureRecognizerToView(){
         self.screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self,
             action: "showSideBar:")
@@ -43,30 +37,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         self.view.addGestureRecognizer(screenEdgeRecognizer)
     }
     
-    func showSideBar(sender: UIScreenEdgePanGestureRecognizer){
-
-        var translate = sender.translationInView(self.view)
-        var newFrame = self.sideBar.frame
-        newFrame.origin.x += translate.x
-        newFrame.origin.x += self.sideBar.frame.width
-        
-        if newFrame.origin.x >= self.sideBar.frame.width {
-            return
-        }
-        
-        self.sideBar.frame.origin.x += translate.x
-        
-        
-        if(sender.state == UIGestureRecognizerState.Ended){
-            if (self.sideBar.frame.origin.x >= (self.sideBar.frame.width/2.0 * -1)) {
-                self.handleSideBar(0.0)
-            }else{
-                self.handleSideBar(self.sideBar.frame.width * -1)
-            }
-        } else {
-            sender.setTranslation(CGPointMake(0,0), inView: self.sideBar)
-        }
-    }
     
     func validateSearch () -> Bool {
     
@@ -102,5 +72,46 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
                 self.sideBar.frame = CGRectMake(x, 0.0, self.sideBar.frame.width, self.sideBar.frame.height)
             }, completion: nil)
         
+    }
+    
+    func showSideBar(sender: UIScreenEdgePanGestureRecognizer){
+        
+        var translate = sender.translationInView(self.view)
+        var newFrame = self.sideBar.frame
+        newFrame.origin.x += translate.x
+        newFrame.origin.x += self.sideBar.frame.width
+        
+        if newFrame.origin.x >= self.sideBar.frame.width {
+            return
+        }
+        
+        self.sideBar.frame.origin.x += translate.x
+        
+        
+        if(sender.state == UIGestureRecognizerState.Ended){
+            if (self.sideBar.frame.origin.x >= (self.sideBar.frame.width/2.0 * -1)) {
+                self.handleSideBar(0.0)
+            }else{
+                self.handleSideBar(self.sideBar.frame.width * -1)
+            }
+        } else {
+            sender.setTranslation(CGPointMake(0,0), inView: self.sideBar)
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        textField.resignFirstResponder()
+        self.searcher.text = nil
+        return true
+    }
+    
+    @IBAction func logout(sender: AnyObject) {
+        PFUser.logOut()
+        
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as AppDelegate
+        self.navigationController!.dismissViewControllerAnimated(true,
+            completion: nil)
+        appDelegate.resetApp()
     }
 }

@@ -40,8 +40,12 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTk-37-mxV">
                                         <rect key="frame" x="51" y="8" width="49" height="30"/>
                                         <state key="normal" title="Logout">
+                                            <color key="titleColor" red="0.9960784912109375" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="logout:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LuI-4d-lbp"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.35821101659999999" blue="0.4248970433" alpha="1" colorSpace="calibratedRGB"/>
@@ -111,7 +115,7 @@
         <!--Login View Controller-->
         <scene sceneID="aZI-92-u5z">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" id="DwD-WU-bPA" customClass="LoginViewController" customModule="Kiino" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="DwD-WU-bPA" customClass="LoginViewController" customModule="Kiino" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WFD-mG-kXB"/>
                         <viewControllerLayoutGuide type="bottom" id="se7-KB-rij"/>
