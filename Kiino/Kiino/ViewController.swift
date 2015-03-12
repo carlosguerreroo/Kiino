@@ -14,12 +14,14 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     @IBOutlet weak var sideBar: UIView!
 
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
-    
+    var sideBarPan : UIPanGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searcher.delegate = self
         self.addGestureRecognizerToView()
+        self.sideBarPan = UIPanGestureRecognizer(target: self,
+            action: "moveSideBar:")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -30,13 +32,21 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         super.didReceiveMemoryWarning()
     }
     
-    func addGestureRecognizerToView(){
+    func addGestureRecognizerToView() {
         self.screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self,
-            action: "showSideBar:")
+            action: "moveSideBar:")
         self.screenEdgeRecognizer.edges = .Left
-        self.view.addGestureRecognizer(screenEdgeRecognizer)
+        self.view.addGestureRecognizer(self.screenEdgeRecognizer)
     }
     
+    func addGesturePanToSideBar() {
+     
+        self.sideBar.addGestureRecognizer(self.sideBarPan)
+    }
+    
+    func removeGesturePanToSideBar() {
+        self.sideBar.removeGestureRecognizer(self.sideBarPan)
+    }
     
     func validateSearch () -> Bool {
     
@@ -74,7 +84,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         
     }
     
-    func showSideBar(sender: UIScreenEdgePanGestureRecognizer){
+    func moveSideBar(sender: UIScreenEdgePanGestureRecognizer){
         
         var translate = sender.translationInView(self.view)
         var newFrame = self.sideBar.frame
@@ -82,6 +92,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         newFrame.origin.x += self.sideBar.frame.width
         
         if newFrame.origin.x >= self.sideBar.frame.width {
+            self.handleSideBar(0.0)
+            self.addGesturePanToSideBar()
             return
         }
         
@@ -91,8 +103,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         if(sender.state == UIGestureRecognizerState.Ended){
             if (self.sideBar.frame.origin.x >= (self.sideBar.frame.width/2.0 * -1)) {
                 self.handleSideBar(0.0)
+                self.addGesturePanToSideBar()
             }else{
                 self.handleSideBar(self.sideBar.frame.width * -1)
+                self.removeGesturePanToSideBar()                
             }
         } else {
             sender.setTranslation(CGPointMake(0,0), inView: self.sideBar)
