@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EDC1A7C41AB2382200687E25 /* NavigationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1A7C31AB2382200687E25 /* NavigationSearchController.swift */; };
 		FA679F291AA00837004E6C90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA679F281AA00837004E6C90 /* AppDelegate.swift */; };
 		FA679F2B1AA00837004E6C90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA679F2A1AA00837004E6C90 /* ViewController.swift */; };
 		FA679F2E1AA00837004E6C90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA679F2C1AA00837004E6C90 /* Main.storyboard */; };
@@ -45,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EDC1A7C01AB22D7500687E25 /* Kiino-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kiino-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		EDC1A7C31AB2382200687E25 /* NavigationSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSearchController.swift; sourceTree = "<group>"; };
 		FA679F231AA00837004E6C90 /* Kiino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA679F271AA00837004E6C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA679F281AA00837004E6C90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,11 +139,13 @@
 				FA679F281AA00837004E6C90 /* AppDelegate.swift */,
 				FA679F2A1AA00837004E6C90 /* ViewController.swift */,
 				FAF471BB1AAE74FC0075F3E9 /* SearchViewController.swift */,
+				FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */,
+				EDC1A7C31AB2382200687E25 /* NavigationSearchController.swift */,
 				FA679F2C1AA00837004E6C90 /* Main.storyboard */,
 				FA679F2F1AA00837004E6C90 /* Images.xcassets */,
 				FA679F311AA00837004E6C90 /* LaunchScreen.xib */,
 				FA679F261AA00837004E6C90 /* Supporting Files */,
-				FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */,
+				EDC1A7C01AB22D7500687E25 /* Kiino-Bridging-Header.h */,
 			);
 			path = Kiino;
 			sourceTree = "<group>";
@@ -175,10 +180,11 @@
 			children = (
 				FAF471E41AAE7DE10075F3E9 /* libsqlite3.dylib */,
 				FAF471E21AAE7DDA0075F3E9 /* libz.dylib */,
+				FAF471DC1AAE7DBE0075F3E9 /* Social.framework */,
+				FAF471C81AAE7D270075F3E9 /* ParseFacebookUtils.framework */,
 				FAC8988B1AAE856700B0A8C2 /* FacebookSDK.framework */,
 				FAF471E01AAE7DD10075F3E9 /* SystemConfiguration.framework */,
 				FAF471DE1AAE7DC90075F3E9 /* StoreKit.framework */,
-				FAF471DC1AAE7DBE0075F3E9 /* Social.framework */,
 				FAF471DA1AAE7DB00075F3E9 /* Security.framework */,
 				FAF471D81AAE7D990075F3E9 /* MobileCoreServices.framework */,
 				FAF471D61AAE7D900075F3E9 /* CoreLocation.framework */,
@@ -189,7 +195,6 @@
 				FAF471CC1AAE7D5A0075F3E9 /* QuartzCore.framework */,
 				FAF471C61AAE7D270075F3E9 /* Bolts.framework */,
 				FAF471C71AAE7D270075F3E9 /* Parse.framework */,
-				FAF471C81AAE7D270075F3E9 /* ParseFacebookUtils.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -297,6 +302,7 @@
 				FAF471BE1AAE7A430075F3E9 /* LoginViewController.swift in Sources */,
 				FAF471BC1AAE74FC0075F3E9 /* SearchViewController.swift in Sources */,
 				FA679F2B1AA00837004E6C90 /* ViewController.swift in Sources */,
+				EDC1A7C41AB2382200687E25 /* NavigationSearchController.swift in Sources */,
 				FA679F291AA00837004E6C90 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +426,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -427,6 +434,8 @@
 				INFOPLIST_FILE = Kiino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Kiino-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -434,6 +443,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -441,6 +451,7 @@
 				INFOPLIST_FILE = Kiino/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Kiino-Bridging-Header.h";
 			};
 			name = Release;
 		};

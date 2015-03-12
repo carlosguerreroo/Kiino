@@ -1,16 +1,14 @@
 //
-//  SearchViewController.swift
+//  NavigationSearchController.swift
 //  Kiino
 //
-//  Created by Carlos Guerrero on 3/9/15.
+//  Created by Andres Trevino on 3/12/15.
 //  Copyright (c) 2015 demo. All rights reserved.
 //
 
 import UIKit
 
-class SearchViewController: UIViewController {
-    
-    
+class NavigationSearchController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +19,6 @@ class SearchViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
 

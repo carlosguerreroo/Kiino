@@ -10,6 +10,32 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBAction func fbLogin(sender: AnyObject) {
+        PFFacebookUtils.logInWithPermissions(["publish_actions"], {
+            (user: PFUser!, error: NSError!) -> Void in
+            if user == nil {
+                NSLog("Uh oh. The user cancelled the Facebook login.")
+            } else if user.isNew {
+                NSLog("User signed up and logged in through Facebook!")
+                self.openSearchView()
+            } else {
+                NSLog("User logged in through Facebook!")
+                self.openSearchView()
+            }
+        })
+    }
+    
+    func openSearchView(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let menuViewController =
+        storyboard.instantiateViewControllerWithIdentifier("NavigationSearchController")
+                                                        as NavigationSearchController
+        
+        self.presentViewController(menuViewController,
+                                   animated: true,
+                                   completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

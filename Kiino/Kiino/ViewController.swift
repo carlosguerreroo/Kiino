@@ -12,6 +12,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var searcher: UITextField!
     
+    @IBAction func fbLogout(sender: AnyObject) {
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searcher.delegate = self
