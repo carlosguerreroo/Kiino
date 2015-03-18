@@ -12,7 +12,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     
     @IBOutlet weak var searcher: UITextField!
     @IBOutlet weak var sideBar: UIView!
-
+    
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     var sideBarPan : UIPanGestureRecognizer!
     
