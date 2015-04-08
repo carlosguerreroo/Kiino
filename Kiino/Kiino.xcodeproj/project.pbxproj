@@ -17,6 +17,7 @@
 		FA679F301AA00837004E6C90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA679F2F1AA00837004E6C90 /* Images.xcassets */; };
 		FA679F331AA00837004E6C90 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA679F311AA00837004E6C90 /* LaunchScreen.xib */; };
 		FA679F3F1AA00837004E6C90 /* KiinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA679F3E1AA00837004E6C90 /* KiinoTests.swift */; };
+		FA94D38D1AD5F6F700C8B389 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA94D38C1AD5F6F700C8B389 /* Twitter.framework */; };
 		FAC8988C1AAE856700B0A8C2 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC8988B1AAE856700B0A8C2 /* FacebookSDK.framework */; };
 		FAF471BC1AAE74FC0075F3E9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF471BB1AAE74FC0075F3E9 /* SearchViewController.swift */; };
 		FAF471BE1AAE7A430075F3E9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */; };
@@ -64,6 +65,7 @@
 		FA679F381AA00837004E6C90 /* KiinoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiinoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA679F3D1AA00837004E6C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA679F3E1AA00837004E6C90 /* KiinoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KiinoTests.swift; sourceTree = "<group>"; };
+		FA94D38C1AD5F6F700C8B389 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		FAC8988B1AAE856700B0A8C2 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		FAF471BB1AAE74FC0075F3E9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = ../SearchViewController.swift; sourceTree = "<group>"; };
 		FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA94D38D1AD5F6F700C8B389 /* Twitter.framework in Frameworks */,
 				FAF471DD1AAE7DBE0075F3E9 /* Social.framework in Frameworks */,
 				FAF471CF1AAE7D6A0075F3E9 /* Accounts.framework in Frameworks */,
 				FAF471E51AAE7DE10075F3E9 /* libsqlite3.dylib in Frameworks */,
@@ -193,6 +196,7 @@
 		FAF471C51AAE7D0B0075F3E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA94D38C1AD5F6F700C8B389 /* Twitter.framework */,
 				ED5B427F1AD5D71400C6C586 /* SwiftyJSON.swift */,
 				ED5B427D1AD5D3B900C6C586 /* Alamofire.swift */,
 				FAF471E41AAE7DE10075F3E9 /* libsqlite3.dylib */,
