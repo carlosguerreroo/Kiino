@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        application.statusBarHidden = true
         Parse.setApplicationId("Pqij1heFb72OBZ2l4WjPqqan565JWmvyqAAoH4wr", clientKey: "okkwKhfUbVHGZAAMt9ksn0qL0ivpPtcAlPHTy2bw")
         var object = PFObject(className: "testDataClass")
         PFFacebookUtils.initializeFacebook()
@@ -26,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController? = menuViewController
         }
         
+
         return true
     }
 
@@ -57,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
     }
-
 
 }
 
