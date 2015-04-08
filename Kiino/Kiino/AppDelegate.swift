@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         Parse.setApplicationId("Pqij1heFb72OBZ2l4WjPqqan565JWmvyqAAoH4wr", clientKey: "okkwKhfUbVHGZAAMt9ksn0qL0ivpPtcAlPHTy2bw")
-        var object = PFObject(className: "testDataClass")
         PFFacebookUtils.initializeFacebook()
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
         
