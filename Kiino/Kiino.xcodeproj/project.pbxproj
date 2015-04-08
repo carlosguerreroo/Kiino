@@ -120,6 +120,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED5B42831AD5DC7700C6C586 /* DataClasses */ = {
+			isa = PBXGroup;
+			children = (
+				ED5B42811AD5D93B00C6C586 /* YouTubeVideo.swift */,
+			);
+			name = DataClasses;
+			sourceTree = "<group>";
+		};
 		FA679F1A1AA00836004E6C90 = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +160,7 @@
 				FA679F311AA00837004E6C90 /* LaunchScreen.xib */,
 				FA679F261AA00837004E6C90 /* Supporting Files */,
 				EDC1A7C01AB22D7500687E25 /* Kiino-Bridging-Header.h */,
-				ED5B42811AD5D93B00C6C586 /* YouTubeVideo.swift */,
+				ED5B42831AD5DC7700C6C586 /* DataClasses */,
 			);
 			path = Kiino;
 			sourceTree = "<group>";

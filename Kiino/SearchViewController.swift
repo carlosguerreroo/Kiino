@@ -11,6 +11,7 @@ import UIKit
 class SearchViewController: UIViewController {
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
+    var videos = Array<YouTubeVideo>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +22,22 @@ class SearchViewController: UIViewController {
     
     func searchYoutube() {
         let URLString = "https://gdata.youtube.com/feeds/api/videos?q=kortsagt&max-results=5&v=2&alt=jsonc&orderby=published"
-        
-        let request1 = request(.GET, URLString)
-        request1.responseJSON { request, response, jsonData, error in
+        let req = request(.GET, URLString)
+        req.responseJSON { request, response, jsonData, error in
             let json = JSON(jsonData!)
             if let items = json["data"]["items"].array {
                 for item in items {
-                    println(item)
-                    println(item["id"])
+                    var video = item["player"]["default"]
+                    var image = item["thumbnail"]["hqDefault"]
+                    var id = item["id"]
+                    var title = item["title"]
+                    var yt_video = YouTubeVideo(id: "\(id)",
+                                             title: "\(title)",
+                                             image: "\(image)",
+                                             video: "\(video)")
+                    self.videos.append(yt_video)
                 }
+                println(self.videos.description)
             }
         }
     }

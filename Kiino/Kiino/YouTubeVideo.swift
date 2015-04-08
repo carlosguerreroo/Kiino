@@ -10,12 +10,16 @@ import Foundation
 
 class YouTubeVideo {
     
+    let id: String
     let title: String
-    var image: String
+    let image: String
+    let video: String
     
-    init(title: String, image: String) {
+    init(id: String, title: String, image: String, video: String) {
+        self.id = id
         self.title = title
         self.image = image
+        self.video = video
     }
     
 }
