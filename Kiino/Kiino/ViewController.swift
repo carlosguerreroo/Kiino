@@ -137,4 +137,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
             completion: nil)
         appDelegate.resetApp()
     }
+    
+    @IBAction func login(sender: AnyObject) {
+        
+    }
+    
 }

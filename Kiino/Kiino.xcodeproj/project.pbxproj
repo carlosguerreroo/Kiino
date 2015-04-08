@@ -90,11 +90,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF471DD1AAE7DBE0075F3E9 /* Social.framework in Frameworks */,
+				FAF471CF1AAE7D6A0075F3E9 /* Accounts.framework in Frameworks */,
 				FAF471E51AAE7DE10075F3E9 /* libsqlite3.dylib in Frameworks */,
 				FAF471E31AAE7DDA0075F3E9 /* libz.dylib in Frameworks */,
 				FAF471E11AAE7DD10075F3E9 /* SystemConfiguration.framework in Frameworks */,
 				FAF471DF1AAE7DC90075F3E9 /* StoreKit.framework in Frameworks */,
-				FAF471DD1AAE7DBE0075F3E9 /* Social.framework in Frameworks */,
 				FAF471DB1AAE7DB00075F3E9 /* Security.framework in Frameworks */,
 				FAF471CD1AAE7D5A0075F3E9 /* QuartzCore.framework in Frameworks */,
 				FAF471D91AAE7D990075F3E9 /* MobileCoreServices.framework in Frameworks */,
@@ -103,7 +104,6 @@
 				FAF471D51AAE7D870075F3E9 /* CoreGraphics.framework in Frameworks */,
 				FAF471D31AAE7D7E0075F3E9 /* CFNetwork.framework in Frameworks */,
 				FAF471D11AAE7D710075F3E9 /* AudioToolbox.framework in Frameworks */,
-				FAF471CF1AAE7D6A0075F3E9 /* Accounts.framework in Frameworks */,
 				FAF471CA1AAE7D270075F3E9 /* Parse.framework in Frameworks */,
 				FAF471C91AAE7D270075F3E9 /* Bolts.framework in Frameworks */,
 				FAF471CB1AAE7D270075F3E9 /* ParseFacebookUtils.framework in Frameworks */,
