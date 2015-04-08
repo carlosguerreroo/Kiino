@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     var sideBarPan : UIPanGestureRecognizer!
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,17 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     
     override func viewWillAppear(animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
+
+
     }
 
+    override func viewDidAppear(animated: Bool) {
+        self.sideBar.frame = CGRect(x: -1 * (screenSize.width/2.0), y: 0.0,
+            width: screenSize.width/2.0, height: screenSize.height);
+        
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
