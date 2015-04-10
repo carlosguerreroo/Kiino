@@ -17,6 +17,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer.delegate = nil
         self.searchYoutube()
+        searchTwitter()
 
     }
     
@@ -44,32 +45,33 @@ class SearchViewController: UIViewController {
     
     func searchTwitter() {
         
-        var token : NSString = PFTwitterUtils.twitter().authToken
-        var secret : NSString = PFTwitterUtils.twitter().authTokenSecret
-        var usern : NSString = PFTwitterUtils.twitter().screenName
+        if PFTwitterUtils.isLinkedWithUser(PFUser.currentUser()) {
+            var token : NSString = PFTwitterUtils.twitter().authToken
+            var secret : NSString = PFTwitterUtils.twitter().authTokenSecret
+            var usern : NSString = PFTwitterUtils.twitter().screenName
         
-        var credential : ACAccountCredential = ACAccountCredential(OAuthToken: token, tokenSecret: secret)
-        var verify : NSURL = NSURL(string: "https://api.twitter.com/1.1/search/tweets.json?q=")!
-        var request : NSMutableURLRequest = NSMutableURLRequest(URL: verify)
-        PFTwitterUtils.twitter().signRequest(request)
+            var credential : ACAccountCredential = ACAccountCredential(OAuthToken: token, tokenSecret: secret)
+            var verify : NSURL = NSURL(string: "https://api.twitter.com/1.1/search/tweets.json?q=food")!
+            var request : NSMutableURLRequest = NSMutableURLRequest(URL: verify)
+            PFTwitterUtils.twitter().signRequest(request)
         
-        var response: NSURLResponse? = nil
-        var error: NSError? = nil
-        var data = NSURLConnection.sendSynchronousRequest(request,
-            returningResponse: &response, error: nil) as NSData?
+            var response: NSURLResponse? = nil
+            var error: NSError? = nil
+            var data = NSURLConnection.sendSynchronousRequest(request,
+                returningResponse: &response, error: nil) as NSData?
         
-        if error != nil {
-            println("error \(error)")
-        } else {
-            //This will print the status code repsonse. Should be 200.
-            //You can just println(response) to see the complete server response
-            println((response as NSHTTPURLResponse).statusCode)
-            //Converting the NSData to JSON
-            let json: NSDictionary = NSJSONSerialization.JSONObjectWithData(data!,
-                options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-            println(json)
+            if error != nil {
+                println("error \(error)")
+            } else {
+                //This will print the status code repsonse. Should be 200.
+                //You can just println(response) to see the complete server response
+                println((response as NSHTTPURLResponse).statusCode)
+                //Converting the NSData to JSON
+                let json: NSDictionary = NSJSONSerialization.JSONObjectWithData(data!,
+                    options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+                println(json)
+            }
         }
-        
 
     }
     
