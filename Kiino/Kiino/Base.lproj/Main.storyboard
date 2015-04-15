@@ -93,14 +93,50 @@
                     <view key="view" contentMode="scaleToFill" id="Xhq-AU-V1y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ud1-Lg-Mem">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Fae-4B-i1G">
+                                    <size key="itemSize" width="285" height="148"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iN0-8x-hOY" customClass="YouTubeCollectionViewCell" customModule="Kiino" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="285" height="148"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJL-hB-Duz">
+                                                    <rect key="frame" x="69" y="41" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" red="0.84313725490196079" green="0.086274509803921567" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ud1-Lg-Mem" firstAttribute="top" secondItem="hq3-VZ-cWH" secondAttribute="bottom" id="Aoo-Rh-cWI"/>
+                            <constraint firstItem="ud1-Lg-Mem" firstAttribute="leading" secondItem="Xhq-AU-V1y" secondAttribute="leadingMargin" constant="-16" id="BTk-QE-LKn"/>
+                            <constraint firstItem="4ga-to-yXL" firstAttribute="top" secondItem="ud1-Lg-Mem" secondAttribute="bottom" id="Bcm-9Y-D67"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ud1-Lg-Mem" secondAttribute="trailing" constant="-16" id="XGO-yH-yOk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qHq-kG-t6N"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CmH-VF-u1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1443" y="339"/>
+            <point key="canvasLocation" x="1424.5" y="339"/>
         </scene>
         <!--Navigation Search Controller-->
         <scene sceneID="VDy-Hk-eDU">

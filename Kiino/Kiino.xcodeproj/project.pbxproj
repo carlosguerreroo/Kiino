@@ -11,6 +11,7 @@
 		ED5B42801AD5D71400C6C586 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B427F1AD5D71400C6C586 /* SwiftyJSON.swift */; };
 		ED5B42821AD5D93B00C6C586 /* YouTubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B42811AD5D93B00C6C586 /* YouTubeVideo.swift */; };
 		EDC1A7C41AB2382200687E25 /* NavigationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1A7C31AB2382200687E25 /* NavigationSearchController.swift */; };
+		FA5AC6631ADDE1B00073C38E /* YouTubeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5AC6621ADDE1B00073C38E /* YouTubeCollectionViewCell.swift */; };
 		FA679F291AA00837004E6C90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA679F281AA00837004E6C90 /* AppDelegate.swift */; };
 		FA679F2B1AA00837004E6C90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA679F2A1AA00837004E6C90 /* ViewController.swift */; };
 		FA679F2E1AA00837004E6C90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA679F2C1AA00837004E6C90 /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		ED5B42811AD5D93B00C6C586 /* YouTubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideo.swift; sourceTree = "<group>"; };
 		EDC1A7C01AB22D7500687E25 /* Kiino-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kiino-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		EDC1A7C31AB2382200687E25 /* NavigationSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSearchController.swift; sourceTree = "<group>"; };
+		FA5AC6621ADDE1B00073C38E /* YouTubeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA679F231AA00837004E6C90 /* Kiino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiino.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA679F271AA00837004E6C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA679F281AA00837004E6C90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 			name = DataClasses;
 			sourceTree = "<group>";
 		};
+		FA5AC6611ADDE1720073C38E /* DataCells */ = {
+			isa = PBXGroup;
+			children = (
+				FA5AC6621ADDE1B00073C38E /* YouTubeCollectionViewCell.swift */,
+			);
+			name = DataCells;
+			sourceTree = "<group>";
+		};
 		FA679F1A1AA00836004E6C90 = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +173,7 @@
 				FA679F311AA00837004E6C90 /* LaunchScreen.xib */,
 				FA679F261AA00837004E6C90 /* Supporting Files */,
 				EDC1A7C01AB22D7500687E25 /* Kiino-Bridging-Header.h */,
+				FA5AC6611ADDE1720073C38E /* DataCells */,
 				ED5B42831AD5DC7700C6C586 /* DataClasses */,
 			);
 			path = Kiino;
@@ -328,6 +339,7 @@
 				EDC1A7C41AB2382200687E25 /* NavigationSearchController.swift in Sources */,
 				ED5B42801AD5D71400C6C586 /* SwiftyJSON.swift in Sources */,
 				FA679F291AA00837004E6C90 /* AppDelegate.swift in Sources */,
+				FA5AC6631ADDE1B00073C38E /* YouTubeCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
