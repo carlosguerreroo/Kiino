@@ -8,16 +8,20 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     var videos = Array<YouTubeVideo>()
     
+    @IBOutlet weak var collection: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer.delegate = nil
+//        self.collection.delegate = self
+//        self.collection.dataSource = self
         self.searchYoutube()
-        searchTwitter()
+        self.searchTwitter()
 
     }
     
@@ -45,13 +49,14 @@ class SearchViewController: UIViewController {
     
     func searchTwitter() {
         
+        print("searchTwitter")
         if PFTwitterUtils.isLinkedWithUser(PFUser.currentUser()) {
             var token : NSString = PFTwitterUtils.twitter().authToken
             var secret : NSString = PFTwitterUtils.twitter().authTokenSecret
             var usern : NSString = PFTwitterUtils.twitter().screenName
         
             var credential : ACAccountCredential = ACAccountCredential(OAuthToken: token, tokenSecret: secret)
-            var verify : NSURL = NSURL(string: "https://api.twitter.com/1.1/search/tweets.json?q=food")!
+            var verify : NSURL = NSURL(string: "https://api.twitter.com/1.1/search/tweets.json?q=soccer")!
             var request : NSMutableURLRequest = NSMutableURLRequest(URL: verify)
             PFTwitterUtils.twitter().signRequest(request)
         
@@ -70,9 +75,24 @@ class SearchViewController: UIViewController {
                 let json: NSDictionary = NSJSONSerialization.JSONObjectWithData(data!,
                     options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
                 println(json)
+                print("======")
             }
         }
 
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("TwitterCell", forIndexPath: indexPath) as TwitterCollectionViewCell
+        cell.username.text = "Soy el username"
+        cell.tweet.text = "Soy el tweet"
+        cell.image.image = UIImage(named: "map")
+        
+        return cell
+        
     }
     
     override func didReceiveMemoryWarning() {
