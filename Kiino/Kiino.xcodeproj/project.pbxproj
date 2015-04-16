@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED296AD61AE081140093066C /* FacebookPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED296AD51AE081140093066C /* FacebookPost.swift */; };
 		ED5B427E1AD5D3B900C6C586 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B427D1AD5D3B900C6C586 /* Alamofire.swift */; };
 		ED5B42801AD5D71400C6C586 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B427F1AD5D71400C6C586 /* SwiftyJSON.swift */; };
 		ED5B42821AD5D93B00C6C586 /* YouTubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B42811AD5D93B00C6C586 /* YouTubeVideo.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ED296AD51AE081140093066C /* FacebookPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPost.swift; sourceTree = "<group>"; };
 		ED5B427D1AD5D3B900C6C586 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		ED5B427F1AD5D71400C6C586 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		ED5B42811AD5D93B00C6C586 /* YouTubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideo.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				ED5B42811AD5D93B00C6C586 /* YouTubeVideo.swift */,
+				ED296AD51AE081140093066C /* FacebookPost.swift */,
 			);
 			name = DataClasses;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED5B427E1AD5D3B900C6C586 /* Alamofire.swift in Sources */,
+				ED296AD61AE081140093066C /* FacebookPost.swift in Sources */,
 				ED5B42821AD5D93B00C6C586 /* YouTubeVideo.swift in Sources */,
 				FAF471BE1AAE7A430075F3E9 /* LoginViewController.swift in Sources */,
 				FAF471BC1AAE74FC0075F3E9 /* SearchViewController.swift in Sources */,

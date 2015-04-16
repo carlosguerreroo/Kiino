@@ -12,12 +12,13 @@ class SearchViewController: UIViewController {
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     var videos = Array<YouTubeVideo>()
+    var FBPosts = Array<FacebookPost>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer.delegate = nil
         self.searchYoutube()
-
+        self.searchFacebook()
     }
     
     func searchYoutube() {
@@ -27,20 +28,35 @@ class SearchViewController: UIViewController {
             let json = JSON(jsonData!)
             if let items = json["data"]["items"].array {
                 for item in items {
-                    var video = item["player"]["default"]
-                    var image = item["thumbnail"]["hqDefault"]
-                    var id = item["id"]
-                    var title = item["title"]
-                    var yt_video = YouTubeVideo(id: "\(id)",
-                                             title: "\(title)",
-                                             image: "\(image)",
-                                             video: "\(video)")
+                    var yt_video = YouTubeVideo(id: item["id"].string!,
+                                             title: item["title"].string!,
+                                             image: item["thumbnail"]["hqDefault"].string!,
+                                             video: item["player"]["default"].string!)
                     self.videos.append(yt_video)
                 }
-                println(self.videos.description)
             }
         }
     }
+    
+    func searchFacebook() {
+        var completionHandler =
+        
+        FBRequestConnection.startWithGraphPath(
+            "me/home?fields=message&with=Monterrey&limit=5",
+            completionHandler: {
+                connection, result, error in
+                let json = JSON(result)
+                if let items = json["data"].array {
+                    for post in items {
+                        println(post["message"])
+                        var fb_post = FacebookPost(post: post["message"].string!)
+                        self.FBPosts.append(fb_post)
+                    }
+                }
+            }
+        );
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

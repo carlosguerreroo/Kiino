@@ -11,7 +11,7 @@ import UIKit
 class LoginViewController: UIViewController {
 
     @IBAction func fbLogin(sender: AnyObject) {
-        PFFacebookUtils.logInWithPermissions(["publish_actions"], {
+        PFFacebookUtils.logInWithPermissions(["publish_actions, read_stream"], {
             (user: PFUser!, error: NSError!) -> Void in
             if user == nil {
                 NSLog("Uh oh. The user cancelled the Facebook login.")
