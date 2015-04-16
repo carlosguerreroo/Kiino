@@ -10,16 +10,15 @@ import Foundation
 
 class Tweet {
     
-    let id: String
-    let title: String
-    let image: String
-    let video: String
+    let user: String
+    let imageUrl: String
+    let tweetText: String
     
-    init(id: String, title: String, image: String, video: String) {
-        self.id = id
-        self.title = title
-        self.image = image
-        self.video = video
+    init(user: String, imageUrl: String, tweetText: String) {
+        
+        self.user = user
+        self.imageUrl = imageUrl
+        self.tweetText = tweetText
     }
     
 }

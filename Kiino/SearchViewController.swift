@@ -12,7 +12,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     var videos = Array<YouTubeVideo>()
-    
+    var tweets = Array<Tweet>()
+
     @IBOutlet weak var collection: UICollectionView!
     
     override func viewDidLoad() {
@@ -48,8 +49,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func searchTwitter() {
-        
-        print("searchTwitter")
         if PFTwitterUtils.isLinkedWithUser(PFUser.currentUser()) {
             var token : NSString = PFTwitterUtils.twitter().authToken
             var secret : NSString = PFTwitterUtils.twitter().authTokenSecret
@@ -68,14 +67,16 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             if error != nil {
                 println("error \(error)")
             } else {
-                //This will print the status code repsonse. Should be 200.
-                //You can just println(response) to see the complete server response
-                println((response as NSHTTPURLResponse).statusCode)
-                //Converting the NSData to JSON
-                let json: NSDictionary = NSJSONSerialization.JSONObjectWithData(data!,
-                    options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-                println(json)
-                print("======")
+                let json = JSON(data : data!)
+                if let statuses = json["statuses"].array{
+                    for status in statuses {
+                        var tweet =
+                        Tweet(user: status["user"]["screen_name"].string!,
+                            imageUrl: status["user"]["profile_image_url_https"].string!,
+                            tweetText: status["text"].string!)
+                        tweets.append(tweet)
+                    }
+                }
             }
         }
 
