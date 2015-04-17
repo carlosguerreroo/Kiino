@@ -14,18 +14,18 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     var videos = Array<YouTubeVideo>()
     var FBPosts = Array<FacebookPost>()
     var tweets = Array<Tweet>()
+    var searchWord = ""
 
     @IBOutlet weak var collection: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer.delegate = nil
-        self.searchYoutube()
-        self.searchFacebook()
+        
     }
     
     func searchYoutube() {
-        let URLString = "https://gdata.youtube.com/feeds/api/videos?q=kortsagt&max-results=5&v=2&alt=jsonc&orderby=published"
+        let URLString = "https://gdata.youtube.com/feeds/api/videos?q=\(self.searchWord)&max-results=5&v=2&alt=jsonc&orderby=published"
         let req = request(.GET, URLString)
         req.responseJSON { request, response, jsonData, error in
             let json = JSON(jsonData!)
@@ -45,16 +45,21 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         var completionHandler =
         
         FBRequestConnection.startWithGraphPath(
-            "me/home?fields=message&with=Monterrey&limit=5",
+            "me/home?fields=message&with=\(self.searchWord)&limit=5",
             completionHandler: {
                 connection, result, error in
                 let json = JSON(result)
                 if let items = json["data"].array {
                     for post in items {
+                        
+                        if post["message"] == nil {
+                            continue
+                        }
+                        
                         println(post["message"])
                         var fb_post = FacebookPost(post: post["message"].string!)
                         self.FBPosts.append(fb_post)
-                    }
+                     }
                 }
             }
         );
@@ -67,7 +72,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             var usern : NSString = PFTwitterUtils.twitter().screenName
         
             var credential : ACAccountCredential = ACAccountCredential(OAuthToken: token, tokenSecret: secret)
-            var verify : NSURL = NSURL(string: "https://api.twitter.com/1.1/search/tweets.json?q=soccer")!
+            var verify : NSURL = NSURL(string: "https://api.twitter.com/1.1/search/tweets.json?q=\(self.searchWord)")!
             var request : NSMutableURLRequest = NSMutableURLRequest(URL: verify)
             PFTwitterUtils.twitter().signRequest(request)
         
@@ -136,5 +141,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewWillAppear(animated: Bool) {
         self.searchYoutube()
         self.searchTwitter()
+        self.searchFacebook()
     }
 }

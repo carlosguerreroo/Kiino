@@ -150,4 +150,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let viewController:SearchViewController = segue.destinationViewController as SearchViewController
+        viewController.searchWord = self.searcher.text
+    }
+    
 }
