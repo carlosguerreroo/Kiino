@@ -137,4 +137,17 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
             completion: nil)
         appDelegate.resetApp()
     }
+    
+    @IBAction func login(sender: AnyObject) {
+        
+        if !PFTwitterUtils.isLinkedWithUser(PFUser.currentUser()) {
+            PFTwitterUtils.linkUser(PFUser.currentUser(), {
+                (succeeded: Bool!, error: NSError!) -> Void in
+                if PFTwitterUtils.isLinkedWithUser(PFUser.currentUser()) {
+                    println("Woohoo, user logged in with Twitter!")
+                }
+            })
+        }
+    }
+    
 }
