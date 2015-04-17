@@ -13,12 +13,14 @@ class Tweet {
     let user: String
     let imageUrl: String
     let tweetText: String
+    var userImage: UIImage
     
     init(user: String, imageUrl: String, tweetText: String) {
         
         self.user = user
         self.imageUrl = imageUrl
         self.tweetText = tweetText
+        self.userImage = UIImage()
     }
     
 }

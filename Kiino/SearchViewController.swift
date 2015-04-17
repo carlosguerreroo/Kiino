@@ -19,11 +19,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer.delegate = nil
-//        self.collection.delegate = self
-//        self.collection.dataSource = self
-        self.searchYoutube()
-        self.searchTwitter()
-
+        
     }
     
     func searchYoutube() {
@@ -74,23 +70,45 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                         Tweet(user: status["user"]["screen_name"].string!,
                             imageUrl: status["user"]["profile_image_url_https"].string!,
                             tweetText: status["text"].string!)
-                        tweets.append(tweet)
+                        self.tweets.append(tweet)
                     }
+                    self.downloadTweetImages()
                 }
             }
         }
 
     }
     
+    func downloadTweetImages () {
+        
+        for tweet in self.tweets {
+            
+            var imgURL: NSURL = NSURL(string: tweet.imageUrl)!
+            
+            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                if error == nil {
+                    tweet.userImage = UIImage(data: data)!
+                    self.collection.reloadData()
+
+                }
+                else {
+                    println("Error: \(error.localizedDescription)")
+                }
+            })
+        }
+    
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return tweets.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("TwitterCell", forIndexPath: indexPath) as TwitterCollectionViewCell
-        cell.username.text = "Soy el username"
-        cell.tweet.text = "Soy el tweet"
-        cell.image.image = UIImage(named: "map")
+        cell.username.text = tweets[indexPath.row].user
+        cell.tweet.text = tweets[indexPath.row].tweetText
+        cell.image.image = tweets[indexPath.row].userImage
         
         return cell
         
@@ -101,6 +119,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     override func viewWillAppear(animated: Bool) {
-
+        self.searchYoutube()
+        self.searchTwitter()
     }
 }
