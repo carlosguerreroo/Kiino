@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="WHAT ARE YOU LOOKING FOR?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8AU-lD-TG8">
-                                <rect key="frame" x="26" y="209" width="269" height="41"/>
+                                <rect key="frame" x="26" y="209" width="268" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="HZ9-KN-Xmc"/>
                                 </constraints>
@@ -34,7 +34,7 @@
                                     <segue destination="n4A-uH-r8l" kind="show" identifier="searching" id="HiE-BO-oM8"/>
                                 </connections>
                             </textField>
-                            <view alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tQu-Te-YTX">
+                            <view alpha="0.49999999999999961" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQu-Te-YTX">
                                 <rect key="frame" x="-160" y="0.0" width="160" height="568"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZm-sv-afB" userLabel="Twitter">
@@ -46,7 +46,7 @@
                                             <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zGs-aO-Utl"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTk-37-mxV">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTk-37-mxV">
                                         <rect key="frame" x="56" y="502" width="49" height="30"/>
                                         <state key="normal" title="Logout">
                                             <color key="titleColor" red="0.9960784912109375" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
@@ -58,14 +58,22 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.023529414089999999" green="0.039215687659999998" blue="0.023529414089999999" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="HTk-37-mxV" secondAttribute="centerX" constant="-0.5" id="3fZ-1k-eQY"/>
+                                    <constraint firstAttribute="width" constant="160" id="LZZ-Pc-NBZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="HTk-37-mxV" secondAttribute="bottom" constant="36" id="Vcn-uQ-dAj"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.52549019610000003" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="8AU-lD-TG8" secondAttribute="trailing" constant="9.5" id="plQ-EA-FyA"/>
+                            <constraint firstItem="tQu-Te-YTX" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="SEq-yC-118"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="tQu-Te-YTX" secondAttribute="bottom" id="hCN-CT-Ovd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8AU-lD-TG8" secondAttribute="trailing" constant="10" id="plQ-EA-FyA"/>
                             <constraint firstItem="8AU-lD-TG8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="sUB-yz-FbR"/>
                             <constraint firstItem="8AU-lD-TG8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="209" id="sxL-NO-Zq6"/>
+                            <constraint firstItem="tQu-Te-YTX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-176" id="zqW-q9-HEk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OEo-Yd-NwF"/>
