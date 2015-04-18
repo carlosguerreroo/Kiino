@@ -21,13 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var object = PFObject(className: "testDataClass")
         PFFacebookUtils.initializeFacebook()
         PFTwitterUtils.initializeWithConsumerKey("jIZ5UXReZkjTrbA9znPIcOO1L",
-                                         consumerSecret:"rC41wqofyo6Vnyo3uu06jbjKHySqABQ1mwOywcP84OuqqyjWEz")
+                                consumerSecret:"rC41wqofyo6Vnyo3uu06jbjKHySqABQ1mwOywcP84OuqqyjWEz")
         
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
         
         if PFUser.currentUser() != nil{
             let menuViewController = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("NavigationSearchController") as NavigationSearchController
-            self.window?.rootViewController? = menuViewController
+            self.window?.rootViewController = menuViewController
         }
         
 

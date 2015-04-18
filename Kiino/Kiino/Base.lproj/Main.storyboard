@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="WHAT ARE YOU LOOKING FOR?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8AU-lD-TG8">
-                                <rect key="frame" x="26" y="209" width="268" height="41"/>
+                                <rect key="frame" x="26" y="209" width="269" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="HZ9-KN-Xmc"/>
                                 </constraints>
@@ -37,15 +37,6 @@
                             <view alpha="0.49999999999999961" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQu-Te-YTX">
                                 <rect key="frame" x="-160" y="0.0" width="160" height="568"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZm-sv-afB" userLabel="Twitter">
-                                        <rect key="frame" x="56" y="269" width="46" height="30"/>
-                                        <state key="normal" title="Twitter">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zGs-aO-Utl"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTk-37-mxV">
                                         <rect key="frame" x="56" y="502" width="49" height="30"/>
                                         <state key="normal" title="Logout">
@@ -54,6 +45,15 @@
                                         </state>
                                         <connections>
                                             <action selector="logout:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="LuI-4d-lbp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZm-sv-afB" userLabel="Twitter">
+                                        <rect key="frame" x="57" y="201" width="46" height="30"/>
+                                        <state key="normal" title="Twitter">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zGs-aO-Utl"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -69,9 +69,8 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="tQu-Te-YTX" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="SEq-yC-118"/>
+                            <constraint firstAttribute="centerX" secondItem="8AU-lD-TG8" secondAttribute="centerX" id="daJ-jE-LlG"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="tQu-Te-YTX" secondAttribute="bottom" id="hCN-CT-Ovd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8AU-lD-TG8" secondAttribute="trailing" constant="10" id="plQ-EA-FyA"/>
-                            <constraint firstItem="8AU-lD-TG8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="sUB-yz-FbR"/>
                             <constraint firstItem="8AU-lD-TG8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="209" id="sxL-NO-Zq6"/>
                             <constraint firstItem="tQu-Te-YTX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-176" id="zqW-q9-HEk"/>
                         </constraints>

@@ -27,14 +27,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     override func viewWillAppear(animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
 
-
     }
 
-//    override func viewDidAppear(animated: Bool) {
-//        self.sideBar.frame = CGRect(x: -1 * (screenSize.width/2.0), y: 0.0,
-//            width: screenSize.width/2.0, height: screenSize.height);
-//        
-//    }
+    override func viewDidAppear(animated: Bool) {
+        self.sideBar.frame = CGRect(x: -1 * (screenSize.width/2.0), y: 0.0,
+            width: screenSize.width/2.0, height: screenSize.height);
+        
+    }
 
     
     override func didReceiveMemoryWarning() {
