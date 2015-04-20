@@ -15,6 +15,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     var FBPosts = Array<FacebookPost>()
     var tweets = Array<Tweet>()
     var news = Array<News>()
+    var vines = Array<Vine>()
     var searchWord = ""
 
     @IBOutlet weak var collection: UICollectionView!
@@ -118,24 +119,22 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    func downloadNewsImages () {
-        
-        for item in self.news {
-            
-            var imgURL: NSURL = NSURL(string: item.imageUrl)!
-            
-            let request: NSURLRequest = NSURLRequest(URL: imgURL)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                if error == nil {
-                    item.newsImage = UIImage(data: data)!
-                    
+    func searchVine() {
+    
+        let URLString = "https://api.vineapp.com/timelines/tags/\(self.searchWord)"
+        let req = request(.GET, URLString)
+        req.responseJSON { request, response, jsonData, error in
+            let json = JSON(jsonData!)
+            if let vines = json["data"]["records"].array {
+                for item in vines {
+                    var vine = Vine(description: item["description"].string!,
+                                       imageUrl: item["thumbnailUrl"].string!,
+                                            url: item["videoUrl"].string!)
+                    self.vines.append(vine)
                 }
-                else {
-                    println("Error: \(error.localizedDescription)")
-                }
-            })
+                self.downloadVinesImages()
+            }
         }
-        
     }
     
     func downloadTweetImages () {
@@ -157,6 +156,46 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             })
         }
     
+    }
+    
+    func downloadNewsImages () {
+        
+        for item in self.news {
+            
+            var imgURL: NSURL = NSURL(string: item.imageUrl)!
+            
+            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                if error == nil {
+                    item.newsImage = UIImage(data: data)!
+                    
+                }
+                else {
+                    println("Error: \(error.localizedDescription)")
+                }
+            })
+        }
+        
+    }
+    
+    func downloadVinesImages () {
+        
+        for item in self.vines {
+            
+            var imgURL: NSURL = NSURL(string: item.imageUrl)!
+            
+            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                if error == nil {
+                    item.thumbnailImage = UIImage(data: data)!
+                    
+                }
+                else {
+                    println("Error: \(error.localizedDescription)")
+                }
+            })
+        }
+        
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -181,5 +220,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.searchTwitter()
         self.searchFacebook()
         self.searchNews()
+        self.searchVine()
     }
 }
