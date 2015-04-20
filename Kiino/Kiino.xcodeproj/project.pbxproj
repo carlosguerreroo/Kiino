@@ -22,6 +22,7 @@
 		FA679F331AA00837004E6C90 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA679F311AA00837004E6C90 /* LaunchScreen.xib */; };
 		FA679F3F1AA00837004E6C90 /* KiinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA679F3E1AA00837004E6C90 /* KiinoTests.swift */; };
 		FA8369481AE0749000E4F69C /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8369471AE0749000E4F69C /* Tweet.swift */; };
+		FA8E16BA1AE5B04C000629D6 /* GoogleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E16B91AE5B04C000629D6 /* GoogleImage.swift */; };
 		FA94D38D1AD5F6F700C8B389 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA94D38C1AD5F6F700C8B389 /* Twitter.framework */; };
 		FAC8988C1AAE856700B0A8C2 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC8988B1AAE856700B0A8C2 /* FacebookSDK.framework */; };
 		FAF471BC1AAE74FC0075F3E9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF471BB1AAE74FC0075F3E9 /* SearchViewController.swift */; };
@@ -76,6 +77,7 @@
 		FA679F3D1AA00837004E6C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA679F3E1AA00837004E6C90 /* KiinoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KiinoTests.swift; sourceTree = "<group>"; };
 		FA8369471AE0749000E4F69C /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		FA8E16B91AE5B04C000629D6 /* GoogleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleImage.swift; sourceTree = "<group>"; };
 		FA94D38C1AD5F6F700C8B389 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		FAC8988B1AAE856700B0A8C2 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		FAF471BB1AAE74FC0075F3E9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = ../SearchViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				FA8369471AE0749000E4F69C /* Tweet.swift */,
 				EDBE0E3B1AE5992B007ACEA9 /* News.swift */,
 				EDBE0E3D1AE5A386007ACEA9 /* Vine.swift */,
+				FA8E16B91AE5B04C000629D6 /* GoogleImage.swift */,
 			);
 			name = DataClasses;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				ED5B42821AD5D93B00C6C586 /* YouTubeVideo.swift in Sources */,
 				FAF471BE1AAE7A430075F3E9 /* LoginViewController.swift in Sources */,
 				FAF471BC1AAE74FC0075F3E9 /* SearchViewController.swift in Sources */,
+				FA8E16BA1AE5B04C000629D6 /* GoogleImage.swift in Sources */,
 				FAFB6C1E1ADDE9F900D4AF94 /* TwitterCollectionViewCell.swift in Sources */,
 				FA679F2B1AA00837004E6C90 /* ViewController.swift in Sources */,
 				EDC1A7C41AB2382200687E25 /* NavigationSearchController.swift in Sources */,

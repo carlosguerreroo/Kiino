@@ -16,8 +16,12 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     var tweets = Array<Tweet>()
     var news = Array<News>()
     var vines = Array<Vine>()
+    var images = Array<GoogleImage>()
+    
     var searchWord = ""
-
+    
+    let googleImagesAPI = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="
+    
     @IBOutlet weak var collection: UICollectionView!
     
     override func viewDidLoad() {
@@ -99,6 +103,27 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             }
         }
 
+    }
+    
+    func searchGoogleImages() {
+        
+        let URLString = googleImagesAPI + self.searchWord
+        let req = request(.GET, URLString)
+        req.responseJSON { request, response, jsonData, error in
+            let json = JSON(jsonData!)
+            if let items = json["responseData"]["results"].array {
+                for item in items {
+                    print(item["title"])
+                    print(item["url"])
+                    var image = GoogleImage(title: item["title"].string!,
+                        url: item["url"].string!)
+                    self.images.append(image)
+                }
+                self.downloadGoogleImages()
+
+            }
+        }
+    
     }
     
     func searchNews() {
@@ -198,6 +223,27 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         
     }
     
+    func downloadGoogleImages () {
+    
+        for item in self.images {
+            
+            var imgURL: NSURL = NSURL(string: item.url)!
+            
+            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                if error == nil {
+                    item.image = UIImage(data: data)!
+                    
+                }
+                else {
+                    println("Error: \(error.localizedDescription)")
+                }
+            })
+        }
+
+    }
+
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tweets.count
     }
@@ -221,5 +267,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.searchFacebook()
         self.searchNews()
         self.searchVine()
+        self.searchGoogleImages()
     }
 }
