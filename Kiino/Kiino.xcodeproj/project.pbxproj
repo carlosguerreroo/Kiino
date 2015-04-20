@@ -11,6 +11,7 @@
 		ED5B427E1AD5D3B900C6C586 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B427D1AD5D3B900C6C586 /* Alamofire.swift */; };
 		ED5B42801AD5D71400C6C586 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B427F1AD5D71400C6C586 /* SwiftyJSON.swift */; };
 		ED5B42821AD5D93B00C6C586 /* YouTubeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5B42811AD5D93B00C6C586 /* YouTubeVideo.swift */; };
+		EDBE0E3C1AE5992B007ACEA9 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBE0E3B1AE5992B007ACEA9 /* News.swift */; };
 		EDC1A7C41AB2382200687E25 /* NavigationSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1A7C31AB2382200687E25 /* NavigationSearchController.swift */; };
 		FA5AC6631ADDE1B00073C38E /* YouTubeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5AC6621ADDE1B00073C38E /* YouTubeCollectionViewCell.swift */; };
 		FA679F291AA00837004E6C90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA679F281AA00837004E6C90 /* AppDelegate.swift */; };
@@ -58,6 +59,7 @@
 		ED5B427D1AD5D3B900C6C586 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		ED5B427F1AD5D71400C6C586 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		ED5B42811AD5D93B00C6C586 /* YouTubeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeVideo.swift; sourceTree = "<group>"; };
+		EDBE0E3B1AE5992B007ACEA9 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		EDC1A7C01AB22D7500687E25 /* Kiino-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kiino-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		EDC1A7C31AB2382200687E25 /* NavigationSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSearchController.swift; sourceTree = "<group>"; };
 		FA5AC6621ADDE1B00073C38E /* YouTubeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				ED5B42811AD5D93B00C6C586 /* YouTubeVideo.swift */,
 				ED296AD51AE081140093066C /* FacebookPost.swift */,
 				FA8369471AE0749000E4F69C /* Tweet.swift */,
+				EDBE0E3B1AE5992B007ACEA9 /* News.swift */,
 			);
 			name = DataClasses;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				ED5B42801AD5D71400C6C586 /* SwiftyJSON.swift in Sources */,
 				FA679F291AA00837004E6C90 /* AppDelegate.swift in Sources */,
 				FA5AC6631ADDE1B00073C38E /* YouTubeCollectionViewCell.swift in Sources */,
+				EDBE0E3C1AE5992B007ACEA9 /* News.swift in Sources */,
 				FA8369481AE0749000E4F69C /* Tweet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

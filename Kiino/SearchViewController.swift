@@ -14,6 +14,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     var videos = Array<YouTubeVideo>()
     var FBPosts = Array<FacebookPost>()
     var tweets = Array<Tweet>()
+    var news = Array<News>()
     var searchWord = ""
 
     @IBOutlet weak var collection: UICollectionView!
@@ -45,7 +46,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         var completionHandler =
         
         FBRequestConnection.startWithGraphPath(
-            "me/home?fields=message&with=\(self.searchWord)&limit=5",
+            "me/home?fields=message&with=\(self.searchWord)",
             completionHandler: {
                 connection, result, error in
                 let json = JSON(result)
@@ -56,7 +57,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                             continue
                         }
                         
-                        println(post["message"])
                         var fb_post = FacebookPost(post: post["message"].string!)
                         self.FBPosts.append(fb_post)
                      }
@@ -98,6 +98,44 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             }
         }
 
+    }
+    
+    func searchNews() {
+        
+        let URLString = "https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=\(self.searchWord)"
+        let req = request(.GET, URLString)
+        req.responseJSON { request, response, jsonData, error in
+            let json = JSON(jsonData!)
+            if let news = json["responseData"]["results"].array {
+                for item in news {
+                    var google_new = News(title: item["titleNoFormatting"].string!,
+                                       imageUrl: item["image"]["url"].string!,
+                                            url: item["unescapedUrl"].string!)
+                    self.news.append(google_new)
+                }
+                self.downloadNewsImages()
+            }
+        }
+    }
+    
+    func downloadNewsImages () {
+        
+        for item in self.news {
+            
+            var imgURL: NSURL = NSURL(string: item.imageUrl)!
+            
+            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                if error == nil {
+                    item.newsImage = UIImage(data: data)!
+                    
+                }
+                else {
+                    println("Error: \(error.localizedDescription)")
+                }
+            })
+        }
+        
     }
     
     func downloadTweetImages () {
@@ -142,5 +180,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.searchYoutube()
         self.searchTwitter()
         self.searchFacebook()
+        self.searchNews()
     }
 }
