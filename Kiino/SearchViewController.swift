@@ -113,7 +113,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             let json = JSON(jsonData!)
             if let items = json["responseData"]["results"].array {
                 for item in items {
-                    println(item["url"])
                     var image = GoogleImage(title: item["title"].string!,
                         url: item["url"].string!)
                     self.images.append(image)
@@ -163,15 +162,19 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func downloadTweetImages () {
         
-        for tweet in self.tweets {
+        for (index, tweet) in enumerate(self.tweets) {
             
             var imgURL: NSURL = NSURL(string: tweet.imageUrl)!
             
             let request: NSURLRequest = NSURLRequest(URL: imgURL)
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
                 if error == nil {
-                    tweet.userImage = UIImage(data: data)!
-                    self.collection.reloadData()
+                    if let image = UIImage(data: data) {
+                        tweet.userImage = image
+                        self.collection.reloadData()
+                    } else {
+                        self.tweets.removeAtIndex(index)
+                    }
 
                 }
                 else {
@@ -184,14 +187,18 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func downloadNewsImages () {
         
-        for item in self.news {
+        for (index, item) in enumerate(self.news) {
             
             var imgURL: NSURL = NSURL(string: item.imageUrl)!
             
             let request: NSURLRequest = NSURLRequest(URL: imgURL)
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
                 if error == nil {
-                    item.newsImage = UIImage(data: data)!
+                    if let image = UIImage(data: data) {
+                        item.newsImage = image
+                    } else {
+                        self.news.removeAtIndex(index)
+                    }
                     
                 }
                 else {
@@ -204,14 +211,18 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func downloadVinesImages () {
         
-        for item in self.vines {
+        for (index, item) in enumerate(self.vines) {
             
             var imgURL: NSURL = NSURL(string: item.imageUrl)!
             
             let request: NSURLRequest = NSURLRequest(URL: imgURL)
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
                 if error == nil {
-                    item.thumbnailImage = UIImage(data: data)!
+                    if let image = UIImage(data: data) {
+                        item.thumbnailImage = image
+                    } else {
+                        self.vines.removeAtIndex(index)
+                    }
                     
                 }
                 else {
