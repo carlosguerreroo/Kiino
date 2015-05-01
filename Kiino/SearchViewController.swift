@@ -113,8 +113,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             let json = JSON(jsonData!)
             if let items = json["responseData"]["results"].array {
                 for item in items {
-                    print(item["title"])
-                    print(item["url"])
+                    println(item["url"])
                     var image = GoogleImage(title: item["title"].string!,
                         url: item["url"].string!)
                     self.images.append(image)
@@ -225,15 +224,19 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func downloadGoogleImages () {
     
-        for item in self.images {
+        for (index, item) in enumerate(self.images) {
             
             var imgURL: NSURL = NSURL(string: item.url)!
+            
             
             let request: NSURLRequest = NSURLRequest(URL: imgURL)
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
                 if error == nil {
-                    item.image = UIImage(data: data)!
-                    
+                    if let image = UIImage(data: data) {
+                        item.image = image
+                    } else {
+                        self.images.removeAtIndex(index)
+                    }
                 }
                 else {
                     println("Error: \(error.localizedDescription)")
