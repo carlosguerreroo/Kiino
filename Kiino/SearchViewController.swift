@@ -152,10 +152,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 for item in vines {
                     var vine = Vine(description: item["description"].string!,
                                        imageUrl: item["thumbnailUrl"].string!,
-                                            url: item["videoUrl"].string!)
+                                            url: item["shareUrl"].string!)
                     self.vines.append(vine)
                 }
-                self.downloadVinesImages()
+                self.collection.reloadData()
+//                self.downloadVinesImages()
             }
         }
     }
@@ -209,29 +210,30 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         
     }
     
-    func downloadVinesImages () {
-        
-        for (index, item) in enumerate(self.vines) {
-            
-            var imgURL: NSURL = NSURL(string: item.imageUrl)!
-            
-            let request: NSURLRequest = NSURLRequest(URL: imgURL)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-                if error == nil {
-                    if let image = UIImage(data: data) {
-                        item.thumbnailImage = image
-                    } else {
-                        self.vines.removeAtIndex(index)
-                    }
-                    
-                }
-                else {
-                    println("Error: \(error.localizedDescription)")
-                }
-            })
-        }
-        
-    }
+//    func downloadVinesImages () {
+//        
+//        for (index, item) in enumerate(self.vines) {
+//            
+//            var imgURL: NSURL = NSURL(string: item.imageUrl)!
+//            
+//            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+//            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+//                if error == nil {
+//                    if let image = UIImage(data: data) {
+//                        item.thumbnailImage = image
+//                        self.collection.reloadData()
+//                    } else {
+//                        self.vines.removeAtIndex(index)
+//                    }
+//                    
+//                }
+//                else {
+//                    println("Error: \(error.localizedDescription)")
+//                }
+//            })
+//        }
+//        
+//    }
     
     func downloadGoogleImages () {
     
@@ -259,17 +261,26 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tweets.count
+//        return tweets.count
+        return self.vines.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("TwitterCell", forIndexPath: indexPath) as TwitterCollectionViewCell
-        cell.username.text = tweets[indexPath.row].user
-        cell.tweet.text = tweets[indexPath.row].tweetText
-        cell.image.image = tweets[indexPath.row].userImage
+//        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("TwitterCell", forIndexPath: indexPath) as TwitterCollectionViewCell
+//        cell.username.text = tweets[indexPath.row].user
+//        cell.tweet.text = tweets[indexPath.row].tweetText
+//        cell.image.image = tweets[indexPath.row].userImage
+//        
+//        return cell
+
+        
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("VineCell", forIndexPath: indexPath) as VineCollectionViewCell
+        
+        let html = "<iframe src='" + self.vines[indexPath.row].url + "/embed/simple' width='400' height='400' frameborder='0' audio=1></iframe><script async src='https://platform.vine.co/static/scripts/embed.js'></script>"
+        cell.webVine.loadHTMLString(html, baseURL: nil)
         
         return cell
-        
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
