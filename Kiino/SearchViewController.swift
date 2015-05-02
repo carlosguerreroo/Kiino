@@ -17,6 +17,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource,
     var tweets = Array<Tweet>()
     var news = Array<News>()
     var vines = Array<Vine>()
+    var vinesWebview = Array<UIWebView>()
     var images = Array<GoogleImage>()
     
     var searchWord = ""
@@ -156,6 +157,13 @@ class SearchViewController: UIViewController, UICollectionViewDataSource,
                                        imageUrl: item["thumbnailUrl"].string!,
                                             url: item["shareUrl"].string!)
                     self.vines.append(vine)
+                    
+                    let html = "<iframe src='" + vine.url + "/embed/simple' width='640' height='640' frameborder='0'></iframe><script async src='https://platform.vine.co/static/scripts/embed.js'></script>"
+                    
+
+                    let webVine = UIWebView(frame: CGRectMake(0, 0, 320, 320))
+                    webVine.loadHTMLString(html, baseURL: nil)
+                    self.vinesWebview.append(webVine)
                 }
                 self.collection.reloadData()
 //                self.downloadVinesImages()
@@ -275,22 +283,10 @@ class SearchViewController: UIViewController, UICollectionViewDataSource,
 //        
 //        return cell
 //        var cell = collectionView.cellForItemAtIndexPath(indexPath) as VineCollectionViewCell
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("VineCell", forIndexPath: indexPath) as VineCollectionViewCell
-        println("este es el indexPath: \(indexPath.row)")
         
-        if let web = self.cache[indexPath.row] {
-            
-            cell.webVine = web
-            
-        } else {
-            
-            var url = self.vines[indexPath.row].url
-            
-            let html = "<iframe src='" + url + "/embed/simple' width='640' height='640' frameborder='0'></iframe><script async src='https://platform.vine.co/static/scripts/embed.js'></script>"
-            
-            cell.webVine.loadHTMLString(html, baseURL: nil)
-            self.cache[indexPath.row] = cell.webVine
-        }
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("VineCell", forIndexPath: indexPath) as VineCollectionViewCell
+        
+        cell.webVine = self.vinesWebview[indexPath.row]
         
         
         return cell
