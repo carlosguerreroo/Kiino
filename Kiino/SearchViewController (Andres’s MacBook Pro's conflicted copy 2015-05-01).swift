@@ -274,25 +274,24 @@ class SearchViewController: UIViewController, UICollectionViewDataSource,
 //        cell.image.image = tweets[indexPath.row].userImage
 //        
 //        return cell
-//        var cell = collectionView.cellForItemAtIndexPath(indexPath) as VineCollectionViewCell
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier("VineCell", forIndexPath: indexPath) as VineCollectionViewCell
-        println("este es el indexPath: \(indexPath.row)")
+        var url = self.vines[indexPath.row].url
         
-        if let web = self.cache[indexPath.row] {
-            
-            cell.webVine = web
+        if let webVine = self.cache[indexPath.row] {
+            println("if")
+            cell.webVine = webVine
+            println(self.cache)
             
         } else {
-            
-            var url = self.vines[indexPath.row].url
-            
+            println("else")
             let html = "<iframe src='" + url + "/embed/simple' width='640' height='640' frameborder='0'></iframe><script async src='https://platform.vine.co/static/scripts/embed.js'></script>"
             
             cell.webVine.loadHTMLString(html, baseURL: nil)
-            self.cache[indexPath.row] = cell.webVine
+            var webview = UIWebView(frame:CGRectMake(0, 0, 320, 320))
+            webview.loadHTMLString(html, baseURL: nil)
+            self.cache[indexPath.row] = webview
+            webview.allowsInlineMediaPlayback
         }
-        
-        
         return cell
 
     }
