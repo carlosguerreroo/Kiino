@@ -367,6 +367,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         var mediaContent = self.media[indexPath.row].1 as News
         cell.title.text = mediaContent.title
+        cell.title.textColor = self.randomColour()
         cell.image.image = mediaContent.newsImage
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.New.hashValue])
     }
