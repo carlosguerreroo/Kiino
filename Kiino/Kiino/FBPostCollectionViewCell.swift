@@ -10,4 +10,5 @@ import UIKit
 
 class FBPostCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var post: UILabel!
 }

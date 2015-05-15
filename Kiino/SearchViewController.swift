@@ -76,7 +76,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                         }
                         
                         var fbpost = FacebookPost(post: post["message"].string!)
-//                        self.media.append((mediaType.FBPost, fbpost as AnyObject))
+                        self.media.append((mediaType.FBPost, fbpost as AnyObject))
+                        self.collection.reloadData()
                      }
                 }
             }
@@ -284,7 +285,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         case mediaType.Youtube:
             print(type)
         case mediaType.FBPost:
-            print(type)
+            self.configureFBPostCell(cell as FBPostCollectionViewCell, indexPath: indexPath)
         case mediaType.Tweet:
             self.configureTweetCell(cell as TwitterCollectionViewCell, indexPath: indexPath)
         case mediaType.New:
@@ -319,6 +320,13 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         var mediaContent = self.media[indexPath.row].1 as GoogleImage
         cell.image.image = mediaContent.image
+        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Image.hashValue])
+    }
+    
+    func configureFBPostCell(cell: FBPostCollectionViewCell, indexPath: NSIndexPath) {
+        
+        var mediaContent = self.media[indexPath.row].1 as FacebookPost
+        cell.post.text = mediaContent.post
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Image.hashValue])
     }
     
