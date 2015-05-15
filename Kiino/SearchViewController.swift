@@ -18,7 +18,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         case Vine
         case Image
     }
-    var cellIdentifiers = ["YoutubeCell", "FPPostCell", "TweetCell", "NewCell",
+    var cellIdentifiers = ["YoutubeCell", "FBPostCell", "TweetCell", "NewCell",
         "VineCell", "ImageCell"]
     
     var cellHeights = [320.0, 320.0, 120.0, 320.0, 320.0, 250.0] as [CGFloat]
@@ -53,6 +53,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                                              title: item["title"].string!,
                                              image: item["thumbnail"]["hqDefault"].string!,
                                              video: item["player"]["default"].string!)
+                    print(item["player"]["default"].string!)
 //                    self.media.append((mediaType.Youtube, yt_video as AnyObject))
                 }
             }
