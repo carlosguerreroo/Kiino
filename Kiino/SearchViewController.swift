@@ -18,6 +18,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         case Vine
         case Image
     }
+    var cellIdentifiers = ["YoutubeCell", "FPPostCell", "TweetCell", "NewCell",
+        "VineCell", "ImageCell"]
+    
+    var cellHeights = [320.0, 320.0, 120.0, 320.0, 320.0, 250.0] as [CGFloat]
+    
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     
     var tweets = Array<Tweet>()
@@ -186,7 +191,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                         tweet.userImage = image
                         self.collection.reloadData()
                         
-//                        self.media.append((mediaType.Tweet, tweet as AnyObject))
+                        self.media.append((mediaType.Tweet, tweet as AnyObject))
                     } else {
                         self.tweets.removeAtIndex(index)
                     }
@@ -236,7 +241,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 if error == nil {
                     if let image = UIImage(data: data) {
                         item.image = image
-//                        self.media.append((mediaType.Image, item as AnyObject))
+                        println(item.url)
+                        self.media.append((mediaType.Image, item as AnyObject))
+                        self.collection.reloadData()
                     } else {
                         self.images.removeAtIndex(index)
                     }
@@ -255,17 +262,21 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-//        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("TwitterCell", forIndexPath: indexPath) as TwitterCollectionViewCell
-//        cell.username.text = tweets[indexPath.row].user
-//        cell.tweet.text = tweets[indexPath.row].tweetText
-//        cell.image.image = tweets[indexPath.row].userImage
 
         return self.configureCell(self.media[indexPath.row].0, indexPath: indexPath)
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+
+        let collectionViewWidth = self.collection.bounds.size.width
+        
+        var type = self.media[indexPath.row].0
+        return CGSize(width: collectionViewWidth, height: self.cellHeights[type.hashValue])
     }
     
     func configureCell (type: mediaType, indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        var cell =  self.collection.dequeueReusableCellWithReuseIdentifier("VineCell", forIndexPath: indexPath) as UICollectionViewCell
+        var cell =  self.collection.dequeueReusableCellWithReuseIdentifier(self.cellIdentifiers[type.hashValue], forIndexPath: indexPath) as UICollectionViewCell
         
         switch type {
             
@@ -274,14 +285,13 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         case mediaType.FBPost:
             print(type)
         case mediaType.Tweet:
-            print(type)
+            self.configureTweetCell(cell as TwitterCollectionViewCell, indexPath: indexPath)
         case mediaType.New:
             print(type)
         case mediaType.Vine:
             self.configureVineCell(cell as VineCollectionViewCell, indexPath: indexPath)
-            print(type)
         case mediaType.Image:
-            print(type)
+            self.configureImageCell(cell as ImageCollectionViewCell, indexPath: indexPath)
         }
         
         return cell;
@@ -291,8 +301,26 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         var mediaContent = self.media[indexPath.row].1 as Vine
         let html = "<iframe src='" + mediaContent.url + "/embed/simple' width='400' height='400' frameborder='0' audio=1></iframe><script async src='https://platform.vine.co/static/scripts/embed.js'></script>"
-         cell.webVine.loadHTMLString(html, baseURL: nil)
+        cell.webVine.loadHTMLString(html, baseURL: nil)
+        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Vine.hashValue])
     }
+    
+    func configureTweetCell(cell: TwitterCollectionViewCell, indexPath: NSIndexPath) {
+
+        var mediaContent = self.media[indexPath.row].1 as Tweet
+        cell.username.text = mediaContent.user
+        cell.tweet.text = mediaContent.tweetText
+        cell.image.image = mediaContent.userImage
+        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Tweet.hashValue])
+    }
+    
+    func configureImageCell(cell: ImageCollectionViewCell, indexPath: NSIndexPath) {
+        
+        var mediaContent = self.media[indexPath.row].1 as GoogleImage
+        cell.image.image = mediaContent.image
+        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Image.hashValue])
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

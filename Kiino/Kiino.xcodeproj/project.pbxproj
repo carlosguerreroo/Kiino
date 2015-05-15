@@ -26,6 +26,7 @@
 		FA8E16BA1AE5B04C000629D6 /* GoogleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8E16B91AE5B04C000629D6 /* GoogleImage.swift */; };
 		FA94D38D1AD5F6F700C8B389 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA94D38C1AD5F6F700C8B389 /* Twitter.framework */; };
 		FAC8988C1AAE856700B0A8C2 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC8988B1AAE856700B0A8C2 /* FacebookSDK.framework */; };
+		FAE273E31B068F260005BCF1 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE273E21B068F260005BCF1 /* ImageCollectionViewCell.swift */; };
 		FAF471BC1AAE74FC0075F3E9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF471BB1AAE74FC0075F3E9 /* SearchViewController.swift */; };
 		FAF471BE1AAE7A430075F3E9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */; };
 		FAF471C91AAE7D270075F3E9 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAF471C61AAE7D270075F3E9 /* Bolts.framework */; };
@@ -82,6 +83,7 @@
 		FA8E16B91AE5B04C000629D6 /* GoogleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleImage.swift; sourceTree = "<group>"; };
 		FA94D38C1AD5F6F700C8B389 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		FAC8988B1AAE856700B0A8C2 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		FAE273E21B068F260005BCF1 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		FAF471BB1AAE74FC0075F3E9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = ../SearchViewController.swift; sourceTree = "<group>"; };
 		FAF471BD1AAE7A430075F3E9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FAF471C61AAE7D270075F3E9 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				FA5AC6621ADDE1B00073C38E /* YouTubeCollectionViewCell.swift */,
 				FAFB6C1D1ADDE9F900D4AF94 /* TwitterCollectionViewCell.swift */,
 				ED9812211AF3FB8E00ABED4D /* VineCollectionViewCell.swift */,
+				FAE273E21B068F260005BCF1 /* ImageCollectionViewCell.swift */,
 			);
 			name = DataCells;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE273E31B068F260005BCF1 /* ImageCollectionViewCell.swift in Sources */,
 				ED9812221AF3FB8E00ABED4D /* VineCollectionViewCell.swift in Sources */,
 				ED5B427E1AD5D3B900C6C586 /* Alamofire.swift in Sources */,
 				ED296AD61AE081140093066C /* FacebookPost.swift in Sources */,
