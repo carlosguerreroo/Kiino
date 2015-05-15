@@ -9,7 +9,12 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
+    let colours = ["#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3",
+        "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39", "#FFC107",
+        "#FF9800", "#FF5722", "#607D8B"]
+    
+    
     @IBAction func fbLogin(sender: AnyObject) {
         PFFacebookUtils.logInWithPermissions(["publish_actions, read_stream"], {
             (user: PFUser!, error: NSError!) -> Void in
@@ -38,6 +43,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = self.randomColour()
+
 
         // Do any additional setup after loading the view.
     }
@@ -57,5 +64,11 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func randomColour() -> UIColor {
+        
+        let randomIndex = Int(arc4random_uniform(UInt32(self.colours.count)))
+        return UIColor(hexString: self.colours[randomIndex])!
+    }
 
 }

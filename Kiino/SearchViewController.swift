@@ -18,10 +18,14 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         case Vine
         case Image
     }
-    var cellIdentifiers = ["YoutubeCell", "FBPostCell", "TweetCell", "NewCell",
+    let cellIdentifiers = ["YoutubeCell", "FBPostCell", "TweetCell", "NewCell",
         "VineCell", "ImageCell"]
     
-    var cellHeights = [320.0, 320.0, 120.0, 320.0, 320.0, 250.0] as [CGFloat]
+    let colours = ["#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3",
+        "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39",
+        "#FFC107", "#FF9800", "#FF5722", "#607D8B"]
+    
+    var cellHeights = [320.0, 200.0, 120.0, 320.0, 320.0, 250.0] as [CGFloat]
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     
@@ -31,6 +35,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     var media = Array<(mediaType,AnyObject)>()
     var searchWord = ""
+    var downloadCounter = 0
     
     let googleImagesAPI = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="
     
@@ -43,6 +48,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         self.collection.collectionViewLayout  = layout
+        self.collection.backgroundColor = self.randomColour()
+        downloadCounter = 0
         
     }
     
@@ -68,7 +75,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         var completionHandler =
         
         FBRequestConnection.startWithGraphPath(
-            "me/home?fields=message&with=\(self.searchWord)",
+            "me/home?fields=message&with=\(self.searchWord)&limit=5",
             completionHandler: {
                 connection, result, error in
                 let json = JSON(result)
@@ -79,10 +86,10 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                             continue
                         }
                         
-                        var fbpost = FacebookPost(post: post["message"].string!)
+                        var fbpost = FacebookPost(post: post["message"].string!, colour: self.randomColour())
                         self.media.append((mediaType.FBPost, fbpost as AnyObject))
-                        self.collection.reloadData()
                      }
+                    self.readyToReload()
                 }
             }
         );
@@ -111,9 +118,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 if let statuses = json["statuses"].array{
                     for status in statuses {
                         var tweet =
-                        Tweet(user: status["user"]["screen_name"].string!,
-                            imageUrl: status["user"]["profile_image_url_https"].string!,
-                            tweetText: status["text"].string!)
+                        Tweet(user: "@"+status["user"]["screen_name"].string!,
+                            imageUrl: status["user"]["profile_image_url_https"].string!.stringByReplacingOccurrencesOfString("_normal", withString: ""),
+                            tweetText: status["text"].string!,
+                            colour: self.randomColour(),
+                            borderColour: self.randomColour())
                         self.tweets.append(tweet)
                     }
                     self.downloadTweetImages()
@@ -169,14 +178,22 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         req.responseJSON { request, response, jsonData, error in
             let json = JSON(jsonData!)
             if let vines = json["data"]["records"].array {
+                
+                var counter = 0
                 for item in vines {
+                    
+                    if counter++ > 3 {
+                    
+                        break;
+                    }
+                    
                     var vine = Vine(description: item["description"].string!,
                                        imageUrl: item["thumbnailUrl"].string!,
                                             url: item["shareUrl"].string!)
                     
                     self.media.append((mediaType.Vine, vine as AnyObject))
                 }
-                self.collection.reloadData()
+                self.readyToReload()
             }
         }
     }
@@ -192,7 +209,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 if error == nil {
                     if let image = UIImage(data: data) {
                         tweet.userImage = image
-                        self.collection.reloadData()
                         
                         self.media.append((mediaType.Tweet, tweet as AnyObject))
                     } else {
@@ -204,7 +220,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 }
             })
         }
-    
+        self.readyToReload()
     }
     
     func downloadNewsImages () {
@@ -219,7 +235,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                     if let image = UIImage(data: data) {
                         item.newsImage = image
                         self.media.append((mediaType.New, item as AnyObject))
-                        self.collection.reloadData()
                     } else {
                         self.news.removeAtIndex(index)
                     }
@@ -229,7 +244,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 }
             })
         }
-        
+        self.readyToReload()
     }
     
     func downloadGoogleImages () {
@@ -246,7 +261,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                         item.image = image
                         println(item.url)
                         self.media.append((mediaType.Image, item as AnyObject))
-                        self.collection.reloadData()
                     } else {
                         self.images.removeAtIndex(index)
                     }
@@ -256,7 +270,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 }
             })
         }
-
+        self.readyToReload()
     }
 
     
@@ -314,8 +328,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     func configureVineCell(cell: VineCollectionViewCell, indexPath: NSIndexPath) {
         
         var mediaContent = self.media[indexPath.row].1 as Vine
-        let html = "<iframe src='" + mediaContent.url + "/embed/simple' width='400' height='400' frameborder='0' audio=1></iframe><script async src='https://platform.vine.co/static/scripts/embed.js'></script>"
+        let html = "<iframe scrolling='no' src='" + mediaContent.url + "/embed/simple' width='400' height='400' frameborder='0' audio=1></iframe><script async src='https://platform.vine.co/static/scripts/embed.js'></script>"
         cell.webVine.loadHTMLString(html, baseURL: nil)
+        cell.backgroundColor = self.randomColour()
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Vine.hashValue])
     }
     
@@ -325,6 +340,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.username.text = mediaContent.user
         cell.tweet.text = mediaContent.tweetText
         cell.image.image = mediaContent.userImage
+        cell.image.layer.cornerRadius = cell.image.frame.height/2
+        cell.image.clipsToBounds = true
+        cell.image.layer.borderColor = mediaContent.borderColour.CGColor
+        cell.image.layer.borderWidth = 3.0
+        cell.backgroundColor = mediaContent.colour
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Tweet.hashValue])
     }
     
@@ -338,6 +358,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     func configureFBPostCell(cell: FBPostCollectionViewCell, indexPath: NSIndexPath) {
         
         var mediaContent = self.media[indexPath.row].1 as FacebookPost
+        cell.backgroundColor = mediaContent.colour
         cell.post.text = mediaContent.post
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.FBPost.hashValue])
     }
@@ -350,16 +371,31 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.New.hashValue])
     }
     
+    func randomColour() -> UIColor {
+        
+        let randomIndex = Int(arc4random_uniform(UInt32(self.colours.count)))
+        return UIColor(hexString: self.colours[randomIndex])!
+    }
+    
+    func readyToReload () {
+        self.downloadCounter++
+        if (self.downloadCounter == 5)
+        {
+            self.media.shuffle()
+            self.collection.reloadData()
+        } 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     override func viewWillAppear(animated: Bool) {
 //        self.searchYoutube()
-//        self.searchTwitter()
-//        self.searchFacebook()
+        self.searchTwitter()
+        self.searchFacebook()
+        self.searchVine()
+        self.searchGoogleImages()
         self.searchNews()
-//        self.searchVine()
-//        self.searchGoogleImages()
     }
 }

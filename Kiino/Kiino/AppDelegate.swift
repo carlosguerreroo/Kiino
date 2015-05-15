@@ -27,7 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if PFUser.currentUser() != nil{
             let menuViewController = self.window?.rootViewController?.storyboard?.instantiateViewControllerWithIdentifier("NavigationSearchController") as NavigationSearchController
+            self.window =  UIWindow(frame: UIScreen.mainScreen().bounds)
             self.window?.rootViewController = menuViewController
+            self.window?.makeKeyAndVisible()
         }
         
 

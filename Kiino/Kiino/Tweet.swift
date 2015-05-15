@@ -14,13 +14,18 @@ class Tweet {
     let imageUrl: String
     let tweetText: String
     var userImage: UIImage
+    var colour: UIColor
+    var borderColour: UIColor
+
     
-    init(user: String, imageUrl: String, tweetText: String) {
+    init(user: String, imageUrl: String, tweetText: String, colour: UIColor, borderColour: UIColor) {
         
         self.user = user
         self.imageUrl = imageUrl
         self.tweetText = tweetText
         self.userImage = UIImage()
+        self.colour = colour
+        self.borderColour = borderColour
     }
     
 }

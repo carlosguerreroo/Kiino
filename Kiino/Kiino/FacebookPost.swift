@@ -11,9 +11,11 @@ import Foundation
 class FacebookPost {
     
     let post: String
+    var colour: UIColor
     
-    init(post: String) {
+    init(post: String, colour: UIColor) {
         self.post = post
+        self.colour = colour
     }
     
 }

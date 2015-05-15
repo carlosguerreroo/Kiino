@@ -16,12 +16,17 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     var sideBarPan : UIPanGestureRecognizer!
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     
+    let colours = ["#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3",
+        "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39", "#FFC107",
+        "#FF9800", "#FF5722", "#607D8B"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searcher.delegate = self
         self.addGestureRecognizerToView()
         self.sideBarPan = UIPanGestureRecognizer(target: self,
             action: "moveSideBar:")
+        self.view.backgroundColor = self.randomColour()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -152,6 +157,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let viewController:SearchViewController = segue.destinationViewController as SearchViewController
         viewController.searchWord = self.searcher.text
+    }
+    
+    func randomColour() -> UIColor {
+        
+        let randomIndex = Int(arc4random_uniform(UInt32(self.colours.count)))
+        return UIColor(hexString: self.colours[randomIndex])!
     }
     
 }
