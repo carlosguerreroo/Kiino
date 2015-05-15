@@ -10,14 +10,21 @@ import UIKit
 
 class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    enum mediaType {
+        case Youtube
+        case FBPost
+        case Tweet
+        case New
+        case Vine
+        case Image
+    }
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
-    var videos = Array<YouTubeVideo>()
-    var FBPosts = Array<FacebookPost>()
+    
     var tweets = Array<Tweet>()
     var news = Array<News>()
-    var vines = Array<Vine>()
     var images = Array<GoogleImage>()
     
+    var media = Array<(mediaType,AnyObject)>()
     var searchWord = ""
     
     let googleImagesAPI = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="
@@ -41,7 +48,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                                              title: item["title"].string!,
                                              image: item["thumbnail"]["hqDefault"].string!,
                                              video: item["player"]["default"].string!)
-                    self.videos.append(yt_video)
+//                    self.media.append((mediaType.Youtube, yt_video as AnyObject))
                 }
             }
         }
@@ -62,8 +69,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                             continue
                         }
                         
-                        var fb_post = FacebookPost(post: post["message"].string!)
-                        self.FBPosts.append(fb_post)
+                        var fbpost = FacebookPost(post: post["message"].string!)
+//                        self.media.append((mediaType.FBPost, fbpost as AnyObject))
                      }
                 }
             }
@@ -132,10 +139,15 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             let json = JSON(jsonData!)
             if let news = json["responseData"]["results"].array {
                 for item in news {
-                    var google_new = News(title: item["titleNoFormatting"].string!,
-                                       imageUrl: item["image"]["url"].string!,
-                                            url: item["unescapedUrl"].string!)
-                    self.news.append(google_new)
+                    
+                    if (item["titleNoFormatting"] != nil && item["image"]["url"] != nil
+                        && item["unescapedUrl"] != nil) {
+                        var google_new = News(title: item["titleNoFormatting"].string!,
+                            imageUrl: item["image"]["url"].string!,
+                            url: item["unescapedUrl"].string!)
+                        self.news.append(google_new)
+                    }
+                   
                 }
                 self.downloadNewsImages()
             }
@@ -153,10 +165,10 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                     var vine = Vine(description: item["description"].string!,
                                        imageUrl: item["thumbnailUrl"].string!,
                                             url: item["shareUrl"].string!)
-                    self.vines.append(vine)
+                    
+                    self.media.append((mediaType.Vine, vine as AnyObject))
                 }
                 self.collection.reloadData()
-//                self.downloadVinesImages()
             }
         }
     }
@@ -173,6 +185,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                     if let image = UIImage(data: data) {
                         tweet.userImage = image
                         self.collection.reloadData()
+                        
+//                        self.media.append((mediaType.Tweet, tweet as AnyObject))
                     } else {
                         self.tweets.removeAtIndex(index)
                     }
@@ -197,10 +211,10 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 if error == nil {
                     if let image = UIImage(data: data) {
                         item.newsImage = image
+//                        self.media.append((mediaType.New, item as AnyObject))
                     } else {
                         self.news.removeAtIndex(index)
                     }
-                    
                 }
                 else {
                     println("Error: \(error.localizedDescription)")
@@ -209,31 +223,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
         
     }
-    
-//    func downloadVinesImages () {
-//        
-//        for (index, item) in enumerate(self.vines) {
-//            
-//            var imgURL: NSURL = NSURL(string: item.imageUrl)!
-//            
-//            let request: NSURLRequest = NSURLRequest(URL: imgURL)
-//            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
-//                if error == nil {
-//                    if let image = UIImage(data: data) {
-//                        item.thumbnailImage = image
-//                        self.collection.reloadData()
-//                    } else {
-//                        self.vines.removeAtIndex(index)
-//                    }
-//                    
-//                }
-//                else {
-//                    println("Error: \(error.localizedDescription)")
-//                }
-//            })
-//        }
-//        
-//    }
     
     func downloadGoogleImages () {
     
@@ -247,6 +236,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 if error == nil {
                     if let image = UIImage(data: data) {
                         item.image = image
+//                        self.media.append((mediaType.Image, item as AnyObject))
                     } else {
                         self.images.removeAtIndex(index)
                     }
@@ -261,8 +251,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return tweets.count
-        return self.vines.count
+        return self.media.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -270,18 +259,41 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
 //        cell.username.text = tweets[indexPath.row].user
 //        cell.tweet.text = tweets[indexPath.row].tweetText
 //        cell.image.image = tweets[indexPath.row].userImage
-//        
-//        return cell
 
-        
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("VineCell", forIndexPath: indexPath) as VineCollectionViewCell
-        
-        let html = "<iframe src='" + self.vines[indexPath.row].url + "/embed/simple' width='400' height='400' frameborder='0' audio=1></iframe><script async src='https://platform.vine.co/static/scripts/embed.js'></script>"
-        cell.webVine.loadHTMLString(html, baseURL: nil)
-        
-        return cell
-
+        return self.configureCell(self.media[indexPath.row].0, indexPath: indexPath)
     }
+    
+    func configureCell (type: mediaType, indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        var cell =  self.collection.dequeueReusableCellWithReuseIdentifier("VineCell", forIndexPath: indexPath) as UICollectionViewCell
+        
+        switch type {
+            
+        case mediaType.Youtube:
+            print(type)
+        case mediaType.FBPost:
+            print(type)
+        case mediaType.Tweet:
+            print(type)
+        case mediaType.New:
+            print(type)
+        case mediaType.Vine:
+            self.configureVineCell(cell as VineCollectionViewCell, indexPath: indexPath)
+            print(type)
+        case mediaType.Image:
+            print(type)
+        }
+        
+        return cell;
+    }
+    
+    func configureVineCell(cell: VineCollectionViewCell, indexPath: NSIndexPath) {
+        
+        var mediaContent = self.media[indexPath.row].1 as Vine
+        let html = "<iframe src='" + mediaContent.url + "/embed/simple' width='400' height='400' frameborder='0' audio=1></iframe><script async src='https://platform.vine.co/static/scripts/embed.js'></script>"
+         cell.webVine.loadHTMLString(html, baseURL: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
