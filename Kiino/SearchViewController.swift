@@ -39,6 +39,10 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer.delegate = nil
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        self.collection.collectionViewLayout  = layout
         
     }
     
@@ -116,7 +120,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 }
             }
         }
-
     }
     
     func searchGoogleImages() {
@@ -132,10 +135,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                     self.images.append(image)
                 }
                 self.downloadGoogleImages()
-
             }
         }
-    
     }
     
     func searchNews() {
@@ -197,7 +198,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                     } else {
                         self.tweets.removeAtIndex(index)
                     }
-
                 }
                 else {
                     println("Error: \(error.localizedDescription)")
@@ -218,7 +218,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 if error == nil {
                     if let image = UIImage(data: data) {
                         item.newsImage = image
-//                        self.media.append((mediaType.New, item as AnyObject))
+                        self.media.append((mediaType.New, item as AnyObject))
+                        self.collection.reloadData()
                     } else {
                         self.news.removeAtIndex(index)
                     }
@@ -267,12 +268,23 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
 
         return self.configureCell(self.media[indexPath.row].0, indexPath: indexPath)
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    
+        var type = self.media[indexPath.row].0
+        
+        if (type == mediaType.New) {
+            var url = NSURL(string:(self.media[indexPath.row].1 as News).url)
+            UIApplication.sharedApplication().openURL(url!)
+        }
+    }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 
         let collectionViewWidth = self.collection.bounds.size.width
         
         var type = self.media[indexPath.row].0
+       
         return CGSize(width: collectionViewWidth, height: self.cellHeights[type.hashValue])
     }
     
@@ -289,7 +301,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         case mediaType.Tweet:
             self.configureTweetCell(cell as TwitterCollectionViewCell, indexPath: indexPath)
         case mediaType.New:
-            print(type)
+            self.configureNewsCell(cell as NewsCollectionViewCell, indexPath: indexPath)
         case mediaType.Vine:
             self.configureVineCell(cell as VineCollectionViewCell, indexPath: indexPath)
         case mediaType.Image:
@@ -327,20 +339,27 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         var mediaContent = self.media[indexPath.row].1 as FacebookPost
         cell.post.text = mediaContent.post
-        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Image.hashValue])
+        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.FBPost.hashValue])
     }
     
+    func configureNewsCell(cell: NewsCollectionViewCell, indexPath: NSIndexPath) {
+        
+        var mediaContent = self.media[indexPath.row].1 as News
+        cell.title.text = mediaContent.title
+        cell.image.image = mediaContent.newsImage
+        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.New.hashValue])
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.searchYoutube()
-        self.searchTwitter()
-        self.searchFacebook()
+//        self.searchYoutube()
+//        self.searchTwitter()
+//        self.searchFacebook()
         self.searchNews()
-        self.searchVine()
-        self.searchGoogleImages()
+//        self.searchVine()
+//        self.searchGoogleImages()
     }
 }
