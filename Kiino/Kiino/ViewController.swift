@@ -11,6 +11,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     
     @IBOutlet weak var searcher: UITextField!
     @IBOutlet weak var sideBar: UIView!
+    @IBOutlet weak var twitter: UIButton!
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     var sideBarPan : UIPanGestureRecognizer!
@@ -27,6 +28,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         self.sideBarPan = UIPanGestureRecognizer(target: self,
             action: "moveSideBar:")
         self.view.backgroundColor = self.randomColour()
+        
+        if PFTwitterUtils.isLinkedWithUser(PFUser.currentUser()) {
+            self.twitter.setTitle("LOGOUT TWITTER", forState: UIControlState.Normal)
+        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -145,12 +151,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     @IBAction func login(sender: AnyObject) {
         
         if !PFTwitterUtils.isLinkedWithUser(PFUser.currentUser()) {
+           
             PFTwitterUtils.linkUser(PFUser.currentUser(), {
                 (succeeded: Bool!, error: NSError!) -> Void in
                 if PFTwitterUtils.isLinkedWithUser(PFUser.currentUser()) {
-                    println("Woohoo, user logged in with Twitter!")
                 }
             })
+            
+        } else {
+        
+            
         }
     }
     

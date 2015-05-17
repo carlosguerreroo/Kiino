@@ -60,7 +60,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYt-qT-kIe" userLabel="Twitter">
-                                        <rect key="frame" x="30" y="120" width="100" height="30"/>
+                                        <rect key="frame" x="10" y="120" width="145" height="30"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
                                         <state key="normal" title="TWITTER">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -97,6 +97,7 @@
                     <connections>
                         <outlet property="searcher" destination="8AU-lD-TG8" id="4FM-6u-dRk"/>
                         <outlet property="sideBar" destination="tQu-Te-YTX" id="Rxy-xf-dUO"/>
+                        <outlet property="twitter" destination="LYt-qT-kIe" id="aH1-wr-HFM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
