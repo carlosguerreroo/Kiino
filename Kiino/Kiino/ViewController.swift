@@ -155,6 +155,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
             PFTwitterUtils.linkUser(PFUser.currentUser(), {
                 (succeeded: Bool!, error: NSError!) -> Void in
                 if PFTwitterUtils.isLinkedWithUser(PFUser.currentUser()) {
+                    self.twitter.setTitle("LOGOUT TWITTER", forState: UIControlState.Normal)
                 }
             })
             
