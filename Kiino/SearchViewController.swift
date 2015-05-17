@@ -350,6 +350,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
         cell.favorite.layer.borderColor = UIColor(hexString: "#FFEB3B")?.CGColor
         cell.favorite.layer.borderWidth = 2.0
+        cell.favorite.layer.cornerRadius = cell.favorite.frame.height/2
+        cell.favorite.clipsToBounds = true
 
     }
     
@@ -374,7 +376,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
         cell.favorite.layer.borderColor = UIColor(hexString: "#FFEB3B")?.CGColor
         cell.favorite.layer.borderWidth = 2.0
-
+        cell.favorite.layer.cornerRadius = cell.favorite.frame.height/2
+        cell.favorite.clipsToBounds = true
     }
     
     func configureImageCell(cell: ImageCollectionViewCell, indexPath: NSIndexPath) {
@@ -391,6 +394,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
         cell.favorite.layer.borderColor = UIColor(hexString: "#FFEB3B")?.CGColor
         cell.favorite.layer.borderWidth = 2.0
+        cell.favorite.layer.cornerRadius = cell.favorite.frame.height/2
+        cell.favorite.clipsToBounds = true
     }
     
     func configureFBPostCell(cell: FBPostCollectionViewCell, indexPath: NSIndexPath) {
@@ -417,7 +422,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
         cell.favorite.layer.borderColor = UIColor(hexString: "#FFEB3B")?.CGColor
         cell.favorite.layer.borderWidth = 2.0
-
+        cell.favorite.layer.cornerRadius = cell.favorite.frame.height/2
+        cell.favorite.clipsToBounds = true
     }
     
     func randomColour() -> UIColor {
@@ -490,7 +496,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
         
         if let testArray : AnyObject? = defaults.objectForKey(payloadkey) {
-            
             if (testArray != nil){
                 payloadData  = testArray! as [NSString]
             }else{
@@ -506,7 +511,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         case mediaType.Tweet:
             var tweetTemp = self.media[index].1 as Tweet
             var myArray = tweetTemp.user.componentsSeparatedByString("@")
-            var userNameTemp = "www.twitter.com/" + (myArray[1] as String)
+            var userNameTemp = "http://www.twitter.com/" + (myArray[1] as String)
             urlData.append(userNameTemp)
             payloadData.append(tweetTemp.tweetText)
         case mediaType.New:

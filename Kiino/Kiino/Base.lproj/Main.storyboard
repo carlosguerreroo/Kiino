@@ -167,7 +167,7 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </webView>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nep-AM-Vde">
-                                                    <rect key="frame" x="271" y="290" width="40" height="12"/>
+                                                    <rect key="frame" x="290" y="290" width="15" height="15"/>
                                                     <color key="backgroundColor" white="0.45707142980475179" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -205,7 +205,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnU-sB-vDJ">
-                                                    <rect key="frame" x="271" y="96" width="40" height="12"/>
+                                                    <rect key="frame" x="290" y="96" width="15" height="15"/>
                                                     <color key="backgroundColor" red="0.93725490196078431" green="0.46666666666666667" blue="0.63137254901960782" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -241,7 +241,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dv7-bo-WdE">
-                                                    <rect key="frame" x="271" y="296" width="40" height="12"/>
+                                                    <rect key="frame" x="290" y="296" width="15" height="15"/>
                                                     <color key="backgroundColor" red="0.99607843139999996" green="0.72156862749999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal">
                                                         <color key="titleColor" red="0.99607843139999996" green="0.72156862749999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -268,7 +268,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftg-o0-oqS">
-                                                    <rect key="frame" x="271" y="226" width="40" height="12"/>
+                                                    <rect key="frame" x="290" y="226" width="15" height="15"/>
                                                     <color key="backgroundColor" red="0.99607843139999996" green="0.72156862749999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </button>
                                             </subviews>

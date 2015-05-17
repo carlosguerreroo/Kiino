@@ -17,6 +17,8 @@ class FavoritesTableViewController: UITableViewController {
         "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39",
         "#FFC107", "#FF9800", "#FF5722", "#607D8B"]
     var colourCell : [UIColor] = []
+    var urlkey = "urls"
+    var payloadkey = "payload"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,17 +59,23 @@ class FavoritesTableViewController: UITableViewController {
             
         var urlkey = "urls"
         var payloadkey = "payload"
-        var defaults = NSUserDefaults.standardUserDefaults()
-            
-        if let testArray : AnyObject? = defaults.objectForKey(urlkey) {
-            urlData = testArray! as [NSString]
+        
+        if let testArray : AnyObject? = def.objectForKey(urlkey) {
+            if (testArray != nil){
+                urlData = testArray! as [NSString]
+            }else{
+                urlData = [NSString]()
+            }
         } else {
             urlData = [NSString]()
         }
             
-        if let testArray : AnyObject? = defaults.objectForKey(payloadkey) {
-            payloadData  = testArray! as [NSString]
-        } else {
+        if let testArray : AnyObject? = def.objectForKey(payloadkey) {
+            if (testArray != nil){
+                payloadData  = testArray! as [NSString]
+            }else{
+                payloadData = [NSString]()
+            }        } else {
             payloadData = [NSString]()
         }
         
@@ -77,10 +85,37 @@ class FavoritesTableViewController: UITableViewController {
         
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath   indexPath: NSIndexPath) {
         
+        print(urlData[indexPath.row])
         var url = NSURL(string:urlData[indexPath.row])
         UIApplication.sharedApplication().openURL(url!)
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            
+            self.removeFavorite(indexPath.row)
+        }
+    }
+    
+    func removeFavorite(index: Int) {
+
+        let def = NSUserDefaults.standardUserDefaults()
+        
+        self.urlData.removeAtIndex(index)
+        self.payloadData.removeAtIndex(index)
+        self.colourCell.removeAtIndex(index)
+        
+        def.setObject(urlData, forKey: urlkey)
+        def.setObject(payloadData, forKey: payloadkey)
+        def.synchronize()
+        
+        self.tableView.reloadData()
     }
     
     func randomColour() -> UIColor {
