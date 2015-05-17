@@ -160,7 +160,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
             
         } else {
         
-            
+            PFTwitterUtils.unlinkUserInBackground(PFUser.currentUser(), {
+                (succeeded: Bool?, error: NSError?) -> Void in
+                if ((succeeded) != nil) {
+                    self.twitter.setTitle("LOGIN TWITTER", forState: UIControlState.Normal)
+                }
+            })
         }
     }
     

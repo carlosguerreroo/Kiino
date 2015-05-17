@@ -392,8 +392,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     override func viewWillAppear(animated: Bool) {
-//        self.searchYoutube()
-        self.searchTwitter()
+       
+        if PFTwitterUtils.isLinkedWithUser(PFUser.currentUser()) {
+            self.searchTwitter()
+        }
+        
         self.searchFacebook()
         self.searchVine()
         self.searchGoogleImages()
