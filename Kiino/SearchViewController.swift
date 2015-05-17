@@ -34,6 +34,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     var images = Array<GoogleImage>()
     
     var media = Array<(mediaType,AnyObject)>()
+    var favorite = Array<Bool>()
+    
     var searchWord = ""
     var downloadCounter = 0
     var downloadToWait = 5;
@@ -88,6 +90,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                         
                         var fbpost = FacebookPost(post: post["message"].string!, colour: self.randomColour())
                         self.media.append((mediaType.FBPost, fbpost as AnyObject))
+                        self.favorite.append(false)
                      }
                     self.readyToReload()
                 }
@@ -192,6 +195,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                                             url: item["shareUrl"].string!)
                     
                     self.media.append((mediaType.Vine, vine as AnyObject))
+                    self.favorite.append(false)
                 }
                 self.readyToReload()
             }
@@ -211,6 +215,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                         tweet.userImage = image
                         
                         self.media.append((mediaType.Tweet, tweet as AnyObject))
+                        self.favorite.append(false)
+
                     } else {
                         self.tweets.removeAtIndex(index)
                     }
@@ -235,6 +241,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                     if let image = UIImage(data: data) {
                         item.newsImage = image
                         self.media.append((mediaType.New, item as AnyObject))
+                        self.favorite.append(false)
                     } else {
                         self.news.removeAtIndex(index)
                     }
@@ -261,6 +268,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                         item.image = image
                         println(item.url)
                         self.media.append((mediaType.Image, item as AnyObject))
+                        self.favorite.append(false)
+
                     } else {
                         self.images.removeAtIndex(index)
                     }
@@ -332,6 +341,16 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.webVine.loadHTMLString(html, baseURL: nil)
         cell.backgroundColor = self.randomColour()
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Vine.hashValue])
+        cell.favorite.tag = indexPath.row
+        cell.favorite.addTarget(self, action: "connected:", forControlEvents: .TouchUpInside)        
+        if (self.favorite[indexPath.row]){
+            cell.favorite.backgroundColor = UIColor(hexString: "#FFEB3B")
+        }else {
+            cell.favorite.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        }
+        cell.favorite.layer.borderColor = UIColor(hexString: "#FFEB3B")?.CGColor
+        cell.favorite.layer.borderWidth = 2.0
+
     }
     
     func configureTweetCell(cell: TwitterCollectionViewCell, indexPath: NSIndexPath) {
@@ -346,6 +365,16 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.image.layer.borderWidth = 3.0
         cell.backgroundColor = mediaContent.colour
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Tweet.hashValue])
+        cell.favorite.tag = indexPath.row
+        cell.favorite.addTarget(self, action: "connected:", forControlEvents: .TouchUpInside)
+        if (self.favorite[indexPath.row]){
+            cell.favorite.backgroundColor = UIColor(hexString: "#FFEB3B")
+        }else {
+            cell.favorite.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        }
+        cell.favorite.layer.borderColor = UIColor(hexString: "#FFEB3B")?.CGColor
+        cell.favorite.layer.borderWidth = 2.0
+
     }
     
     func configureImageCell(cell: ImageCollectionViewCell, indexPath: NSIndexPath) {
@@ -353,6 +382,15 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         var mediaContent = self.media[indexPath.row].1 as GoogleImage
         cell.image.image = mediaContent.image
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Image.hashValue])
+        cell.favorite.tag = indexPath.row
+        cell.favorite.addTarget(self, action: "connected:", forControlEvents: .TouchUpInside)
+        if (self.favorite[indexPath.row]){
+            cell.favorite.backgroundColor = UIColor(hexString: "#FFEB3B")
+        }else {
+            cell.favorite.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        }
+        cell.favorite.layer.borderColor = UIColor(hexString: "#FFEB3B")?.CGColor
+        cell.favorite.layer.borderWidth = 2.0
     }
     
     func configureFBPostCell(cell: FBPostCollectionViewCell, indexPath: NSIndexPath) {
@@ -370,6 +408,16 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.title.textColor = self.randomColour()
         cell.image.image = mediaContent.newsImage
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.New.hashValue])
+        cell.favorite.tag = indexPath.row
+        cell.favorite.addTarget(self, action: "connected:", forControlEvents: .TouchUpInside)
+        if (self.favorite[indexPath.row]){
+            cell.favorite.backgroundColor = UIColor(hexString: "#FFEB3B")
+        }else {
+            cell.favorite.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        }
+        cell.favorite.layer.borderColor = UIColor(hexString: "#FFEB3B")?.CGColor
+        cell.favorite.layer.borderWidth = 2.0
+
     }
     
     func randomColour() -> UIColor {
@@ -404,5 +452,16 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.searchVine()
         self.searchGoogleImages()
         self.searchNews()
+    }
+    
+    func connected(sender: UIButton!) {
+        
+        if (sender.backgroundColor != UIColor(white: 1, alpha: 0.0)) {
+            self.favorite[sender.tag] = false
+            sender.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        } else {
+            self.favorite[sender.tag] = true
+            sender.backgroundColor = UIColor(hexString: "#FFEB3B")
+        }
     }
 }

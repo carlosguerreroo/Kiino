@@ -12,5 +12,5 @@ class VineCollectionViewCell: UICollectionViewCell {
     
     
     @IBOutlet weak var webVine: UIWebView!
-    
+    @IBOutlet weak var favorite: UIButton!
 }

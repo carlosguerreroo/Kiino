@@ -12,4 +12,5 @@ class NewsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var favorite: UIButton!
 }

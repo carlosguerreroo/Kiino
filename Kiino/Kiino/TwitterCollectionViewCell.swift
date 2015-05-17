@@ -13,6 +13,7 @@ class TwitterCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var tweet: UILabel!
+    @IBOutlet weak var favorite: UIButton!
     
      func awakerFromNib(){
         contentView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
