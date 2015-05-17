@@ -505,7 +505,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             
         case mediaType.Tweet:
             var tweetTemp = self.media[index].1 as Tweet
-            urlData.append("www.twitter.com/"+tweetTemp.user)
+            var myArray = tweetTemp.user.componentsSeparatedByString("@")
+            var userNameTemp = "www.twitter.com/" + (myArray[1] as String)
+            urlData.append(userNameTemp)
             payloadData.append(tweetTemp.tweetText)
         case mediaType.New:
             var newTemp = self.media[index].1 as News

@@ -16,6 +16,7 @@ class FavoritesTableViewController: UITableViewController {
     let colours = ["#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3",
         "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39",
         "#FFC107", "#FF9800", "#FF5722", "#607D8B"]
+    var colourCell : [UIColor] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +45,8 @@ class FavoritesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
         
         cell.textLabel?.text = payloadData[indexPath.row]
-        cell.backgroundColor = randomColour()
+        cell.backgroundColor = colourCell[indexPath.row]
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.textLabel?.textColor = UIColor.whiteColor()
         return cell
     }
@@ -69,6 +71,16 @@ class FavoritesTableViewController: UITableViewController {
             payloadData = [NSString]()
         }
         
+        for data in payloadData {
+            colourCell.append(randomColour())
+        }
+        
+    }
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        var url = NSURL(string:urlData[indexPath.row])
+        UIApplication.sharedApplication().openURL(url!)
     }
     
     func randomColour() -> UIColor {
