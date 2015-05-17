@@ -342,7 +342,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.backgroundColor = self.randomColour()
         cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, cell.frame.size.width, self.cellHeights[mediaType.Vine.hashValue])
         cell.favorite.tag = indexPath.row
-        cell.favorite.addTarget(self, action: "connected:", forControlEvents: .TouchUpInside)        
+        cell.favorite.addTarget(self, action: "connected:", forControlEvents: .TouchUpInside)
         if (self.favorite[indexPath.row]){
             cell.favorite.backgroundColor = UIColor(hexString: "#FFEB3B")
         }else {
@@ -464,4 +464,57 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             sender.backgroundColor = UIColor(hexString: "#FFEB3B")
         }
     }
+    
+    func saveData(index: Int, type: mediaType) {
+    
+        let def = NSUserDefaults.standardUserDefaults()
+        
+        var urlkey = "urls"
+        var payloadkey = "payload"
+        
+        var urlData : [NSString];
+        var payloadData : [NSString];
+        
+        var defaults = NSUserDefaults.standardUserDefaults()
+        
+        if let testArray : AnyObject? = defaults.objectForKey(urlkey) {
+            urlData = testArray! as [NSString]
+        } else {
+            urlData = [NSString]()
+        }
+        
+        if let testArray : AnyObject? = defaults.objectForKey(payloadkey) {
+            payloadData  = testArray! as [NSString]
+        } else {
+            payloadData = [NSString]()
+        }
+        
+        
+        switch type {
+            
+        case mediaType.Tweet:
+            var tweetTemp = self.media[index].1 as Tweet
+            urlData.append("www.twitter.com/"+tweetTemp.user)
+            payloadData.append(tweetTemp.tweetText)
+        case mediaType.New:
+            var newTemp = self.media[index].1 as News
+            urlData.append(newTemp.url)
+            payloadData.append(newTemp.title)
+        case mediaType.Vine:
+            var vineTemp = self.media[index].1 as Vine
+            urlData.append(vineTemp.url)
+            payloadData.append(vineTemp.description)
+        case mediaType.Image:
+            var imageTemp = self.media[index].1 as GoogleImage
+            urlData.append(imageTemp.url)
+            payloadData.append(imageTemp.title)
+        default:
+            print("Error : Incorrect type")
+        }
+
+        defaults.setObject(urlData, forKey: urlkey)
+        defaults.setObject(payloadData, forKey: payloadkey)
+        defaults.synchronize()
+    }
+    
 }

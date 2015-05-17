@@ -16,6 +16,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     var sideBarPan : UIPanGestureRecognizer!
     let screenSize: CGRect = UIScreen.mainScreen().bounds
+    var segueView = ""
     
     let colours = ["#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3",
         "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39", "#FFC107",
@@ -76,6 +77,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
         
         if (identifier! == "searching" && !self.validateSearch()) {
             self.displayErrorMessage()
+        }
+        
+        if (identifier == "searching") {
+            segueView = ""
+        } else {
+            segueView = "fav"
         }
         
         return true
@@ -171,8 +178,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UIGestureRecognizer
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let viewController:SearchViewController = segue.destinationViewController as SearchViewController
-        viewController.searchWord = self.searcher.text
+        
+        if segueView == "" {
+            let viewController:SearchViewController = segue.destinationViewController as SearchViewController
+            viewController.searchWord = self.searcher.text
+        }
     }
     
     func randomColour() -> UIColor {
