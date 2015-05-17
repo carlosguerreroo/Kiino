@@ -36,11 +36,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     var media = Array<(mediaType,AnyObject)>()
     var searchWord = ""
     var downloadCounter = 0
-    
+    var downloadToWait = 5;
     let googleImagesAPI = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="
     
     @IBOutlet weak var collection: UICollectionView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer.delegate = nil
@@ -380,7 +380,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func readyToReload () {
         self.downloadCounter++
-        if (self.downloadCounter == 5)
+        if (self.downloadCounter == self.downloadToWait)
         {
             self.media.shuffle()
             self.collection.reloadData()
@@ -395,6 +395,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
        
         if PFTwitterUtils.isLinkedWithUser(PFUser.currentUser()) {
             self.searchTwitter()
+            downloadToWait = 5
+        } else {
+            downloadToWait = 4
         }
         
         self.searchFacebook()
