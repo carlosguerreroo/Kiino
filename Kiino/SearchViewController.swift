@@ -462,10 +462,11 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         } else {
             self.favorite[sender.tag] = true
             sender.backgroundColor = UIColor(hexString: "#FFEB3B")
+            self.saveData(sender.tag)
         }
     }
     
-    func saveData(index: Int, type: mediaType) {
+    func saveData(index: Int) {
     
         let def = NSUserDefaults.standardUserDefaults()
         
@@ -478,19 +479,29 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         var defaults = NSUserDefaults.standardUserDefaults()
         
         if let testArray : AnyObject? = defaults.objectForKey(urlkey) {
-            urlData = testArray! as [NSString]
+            if (testArray != nil){
+                urlData = testArray! as [NSString]
+            }else{
+                urlData = [NSString]()
+            }
+
         } else {
             urlData = [NSString]()
         }
         
         if let testArray : AnyObject? = defaults.objectForKey(payloadkey) {
-            payloadData  = testArray! as [NSString]
+            
+            if (testArray != nil){
+                payloadData  = testArray! as [NSString]
+            }else{
+                payloadData = [NSString]()
+            }
         } else {
             payloadData = [NSString]()
         }
         
         
-        switch type {
+        switch self.media[index].0 {
             
         case mediaType.Tweet:
             var tweetTemp = self.media[index].1 as Tweet
