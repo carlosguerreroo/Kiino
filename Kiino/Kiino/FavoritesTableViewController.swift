@@ -13,10 +13,14 @@ class FavoritesTableViewController: UITableViewController {
 
     var urlData : [NSString] = [];
     var payloadData : [NSString] = [];
+    let colours = ["#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3",
+        "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39",
+        "#FFC107", "#FF9800", "#FF5722", "#607D8B"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer.delegate = nil
+        self.tableView.backgroundColor = self.randomColour()
 
         self.fetchFavorites()
     }
@@ -40,7 +44,8 @@ class FavoritesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
         
         cell.textLabel?.text = payloadData[indexPath.row]
-
+        cell.backgroundColor = randomColour()
+        cell.textLabel?.textColor = UIColor.whiteColor()
         return cell
     }
     
@@ -64,5 +69,11 @@ class FavoritesTableViewController: UITableViewController {
             payloadData = [NSString]()
         }
         
+    }
+    
+    func randomColour() -> UIColor {
+        
+        let randomIndex = Int(arc4random_uniform(UInt32(self.colours.count)))
+        return UIColor(hexString: self.colours[randomIndex])!
     }
 }
