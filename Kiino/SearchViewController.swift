@@ -464,10 +464,15 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         if (sender.backgroundColor != UIColor(white: 1, alpha: 0.0)) {
             self.favorite[sender.tag] = false
-            sender.backgroundColor = UIColor(white: 1, alpha: 0.0)
+        
+            UIView.animateWithDuration(0.5, animations: {
+                sender.backgroundColor = UIColor(white: 1, alpha: 0.0)
+            })
         } else {
             self.favorite[sender.tag] = true
-            sender.backgroundColor = UIColor(hexString: "#FFEB3B")
+            UIView.animateWithDuration(0.5, animations: {
+                sender.backgroundColor = UIColor(hexString: "#FFEB3B")
+            })
             self.saveData(sender.tag)
         }
     }
