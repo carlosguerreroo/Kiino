@@ -255,7 +255,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func downloadGoogleImages () {
-    
+        
+        var localImageCounter = 0
+        
         for (index, item) in enumerate(self.images) {
             
             var imgURL: NSURL = NSURL(string: item.url)!
@@ -269,9 +271,15 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                         println(item.url)
                         self.media.append((mediaType.Image, item as AnyObject))
                         self.favorite.append(false)
+                        localImageCounter++
 
                     } else {
                         self.images.removeAtIndex(index)
+                        
+                    }
+                    print(self.images.count)
+                    if localImageCounter == self.images.count {
+                        self.readyToReload()
                     }
                 }
                 else {
@@ -279,7 +287,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 }
             })
         }
-        self.readyToReload()
     }
 
     
